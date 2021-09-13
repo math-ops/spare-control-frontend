@@ -1,0 +1,19 @@
+@media only screen and (max-width: 769px){
+  .id{
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  .id-input{
+    margin-top: 43px;
+  }
+
+  .fab{
+    margin-top: 90px;
+    margin-left: 20px;
+  }
+
+  .fab-input{
+    margin-top: 110px;
+  }
+}

@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Sigin from './components/Login'
+import Menu from './components/Menu'
+import Item from './components/Item'
+import GlobalStyle from './styles/global'
+import Footer from './components/Common/Footer'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={Sigin}/>
+        <Route path="/menu" exact component={Menu} />
+        <Route path="/item" exact component={Item} />
+      </Switch>
+      
+      
+      </BrowserRouter>
+     
+      <Footer />
+
+      <GlobalStyle />
+    </>
+    )
 }
 
 export default App;
