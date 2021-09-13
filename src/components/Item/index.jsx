@@ -12,17 +12,17 @@ export default function Item(){
         <Label className="fab">FABRICANTE</Label>
         <Input  className="fab-input" placeholder="Fabricante" />
 
-        <Label></Label>
-        <Input />
+        <Label className="mod">MODELO</Label>
+        <Input className="mod-input" placeholder="Modelo"/>
 
-        <Label></Label>
-        <Input />
+        <Label className="loc">LOCAL</Label>
+        <Input className="loc-input" placeholder="Local"/>
 
-        <Label></Label>
-        <Input />
-        
-        <Label></Label>
-        <Input />
+        <Label className="area">AREA</Label>
+        <Input className="area-input" placeholder="Area"/>
+
+        <Label className="qtd">QUANTIDADE</Label>
+        <Input className="qtd-input" type="number" placeholder="Quantidade"/>
 
         <Button>
           <Strong>Adicionar</Strong>
@@ -70,13 +70,13 @@ export const Input = styled.input`
 
 export const Button = styled.a`
   position: absolute;
-  width: 110px;
-  height: 70px;
+  width: 100px;
+  height: 50px;
   border: none;
   border-radius: 25px;
   background: #00c95d; 
-  margin-top: 400px;
-  margin-left: 110px;
+  margin-top: 445px;
+  margin-left: 120px;
 `;
 
 export const Strong = styled.strong`
@@ -84,8 +84,8 @@ export const Strong = styled.strong`
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   position: absolute;
-  margin-top: 25px;
-  margin-left:21px;
+  margin-top: 15px;
+  margin-left:15px;
   color: #eee;
 
 `;
