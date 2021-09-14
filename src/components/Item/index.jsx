@@ -50,6 +50,7 @@ export const Items = styled.div`
   border-radius: 3px;
   margin-left: 14.5px;
   box-shadow: 4px 4px 0.25 rgba(0, 0, 0, 0.24);
+  
 `;
 
 export const Label = styled.label`

@@ -1,0 +1,22 @@
+.fab {
+  margin: 20px;
+}
+
+.fab-input{
+  margin-top: 50px;
+}
+
+.fab-button{
+  margin-top: 110px;
+  margin-left: 85px;
+  transition: transform;
+}
+
+.fab-button:hover{
+  transform: translateY(10px);
+}
+
+.alerta{
+  margin-top: 200px;
+  margin-left: 60px;
+}

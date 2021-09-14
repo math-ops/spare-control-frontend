@@ -85,6 +85,11 @@ export const OptionBox = styled.div`
     border: none;
     border-radius: 5px;
     background: #eee;
+    transition: transform 0.4s;
+
+  &:hover {
+    transform: translateX(10px);
+  }
 `;
 
 export const Button = styled.a`
