@@ -19,6 +19,7 @@ export const Box = styled.form`
   border: none;
   background: #eee;
   border-radius: 3px;
+  box-shadow: 0 0 15px #001b94;
 
  `;
 

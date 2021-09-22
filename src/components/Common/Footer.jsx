@@ -13,9 +13,10 @@ export const Foot = styled.footer`
   padding: 1.4rem 0 1.4rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 25px;
   color: #fff;
   opacity: 0.8;
-  margin-top: 565px;
+  margin-top: 160%;
   margin-left: 30px;
+  margin-bottom: 20px;
 `;

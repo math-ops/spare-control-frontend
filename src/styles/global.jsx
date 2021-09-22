@@ -10,7 +10,6 @@ export default createGlobalStyle`
 
   html {
     background: #009add;
-    background-image: linear-gradient(to bottom, #009add, #017db3);
   }
 
   a {
