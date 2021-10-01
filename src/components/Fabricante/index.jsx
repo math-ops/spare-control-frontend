@@ -1,5 +1,7 @@
-import { Title, Box, Label, Input, Button, Alert } from './fabricante'
+import { Title, Box, Label, Input, Button, Alert, Back } from './fabricante'
+import { Link } from 'react-router-dom';
 import './style.css'
+import arrow from '../../styles/assets/return.svg'
 
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -155,6 +157,10 @@ export default function Fabricante(){
   return(
     <>
       <Title>Adicionar Fabricante</Title>
+
+      <Link to="/menu">
+        <Back src={arrow} alt="return" />
+      </Link>
       <Box>
         <Label className="fab">Nome do Fabricante</Label>
         <Input className="fab-input" placeholder="Fabricante"/>

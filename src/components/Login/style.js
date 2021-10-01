@@ -103,6 +103,6 @@ export const Alert = styled.h2`
 export const Background = styled.img`
   position: absolute;
   width: 110vw;
-  height: 111vh;
+  height: 112vh;
   margin-top: -40px;  
 `;

@@ -76,3 +76,11 @@ export const Box = styled.form`
   color: green;
   text-align: center;
  `;
+
+export const Back = styled.img`
+position: absolute;
+width: 50px;
+height: 50px;
+margin-top: -10px;
+margin-left: 5px;
+`;
