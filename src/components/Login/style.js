@@ -64,7 +64,7 @@ export const Button = styled.button`
   width: 150px;
   border-radius: 25px;
   margin-top: 20px;
-  margin-left: 25%;
+  margin-left: 30%;
   &:hover {
     transition: 0.4s ease-out;
     background: #fff;
@@ -97,7 +97,7 @@ export const Alert = styled.h2`
   font-size: 25px;
 
   margin-top: 110px;
-  margin-left: 25%;
+  margin-left: 30%;
 `;
 
 export const Background = styled.img`

@@ -7,7 +7,7 @@ export default function Menu(){
     <>
     <Title>Spare Control</Title>
     <Subtitle>Please, select an option bellow</Subtitle>
-      <div className="menu">
+      <div className="menu">;
 
         {/* Opção 01 */}
         <OptionBox className="first">          
@@ -31,10 +31,22 @@ export default function Menu(){
 
         {/* Opção 03 */}
         <OptionBox className="rd">          
-            <OptionTitle>Imprimir Labels</OptionTitle>
+            <OptionTitle>Cadastrar Modelo</OptionTitle>
+            <Link to="/modelo">   
             <Button href="#">
             <Strong>SELECT</Strong>  
             </Button>
+            </Link>
+        </OptionBox>
+
+        {/* Opção 04 */}
+        <OptionBox className="fourth">          
+            <OptionTitle>Visualizar Inseridos</OptionTitle>
+            <Link to="/tab_modelo">
+            <Button href="#">
+            <Strong>SELECT</Strong>  
+            </Button>
+            </Link>
         </OptionBox>
 
       </div>
