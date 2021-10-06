@@ -149,11 +149,11 @@ export function StickyHeadTable() {
   );
 }
 
-export default function ViewModelo(){
+export default function ViewFabricante(){
   return(
     <>
       <Topbar />
-      <Title>Lista de Modelos Cadastrados</Title>
+      <Title>Lista de Fabricantes Cadastrados</Title>
       <StickyHeadTable />
     </>
   )

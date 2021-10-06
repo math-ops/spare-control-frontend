@@ -5,6 +5,7 @@ import GlobalStyle from './styles/global'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Fabricante from './components/Fabricante'
 import Modelo from './components/Modelo'
+import ViewFabricante from './components/View/Fabricante'
 import ViewModelo from './components/View/Modelo'
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
         <Route path="/item" exact component={Item} />
         <Route path="/fabricante" exact component={Fabricante} />
         <Route path="/modelo" exact component={Modelo} />
-        <Route path="/view" exact component={ViewModelo} />
+        <Route path="/viewfab" exact component={ViewFabricante} />
+        <Route path="/viewmod" exact component={ViewModelo} />
+
         
       </Switch>
       

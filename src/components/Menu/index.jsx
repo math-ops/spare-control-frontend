@@ -42,14 +42,23 @@ export default function Menu(){
 
         {/* Opção 04 */}
         <OptionBox className="fourth">          
-            <OptionTitle>Visualizar Fabricantes</OptionTitle>
-            <Link to="/view">
+            <OptionTitle>Visualizar Modelos</OptionTitle>
+            <Link to="/viewmod">
             <Button href="#">
             <Strong>SELECT</Strong>  
             </Button>
             </Link>
         </OptionBox>
 
+        {/* Opção 05 */}
+        <OptionBox className="view-model">
+          <OptionTitle>Visualizar Fabricantes</OptionTitle>
+          <Link to="/viewfab">
+            <Button href="#">
+              <Strong>SELECT</Strong>
+            </Button>
+          </Link>
+        </OptionBox>
 
       </div>
 

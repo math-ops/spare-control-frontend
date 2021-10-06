@@ -29,7 +29,7 @@ export default function Topbar(){
 
 export const Header = styled.header`
   padding: 0;
-  background: #eee;
+  background: #ddd;
   height: 50px;
 `;
 
@@ -41,6 +41,7 @@ export const Return = styled.button`
   height: 30px;
   margin-left: 2%;
   margin-top: 10px;
+  background: none;
 `;
 
 export const Logout = styled.button`
@@ -51,6 +52,7 @@ export const Logout = styled.button`
   height: 30px;
   margin-left: 90%;
   margin-top: 10px;
+  background: none;
 `;
 
 export const Svg = styled.img`
