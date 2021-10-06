@@ -11,6 +11,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Title } from '../Menu/style'
+// eslint-disable-next-line
+import moment from 'moment'
+import 'moment/locale/pt-br'
 
 //Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
