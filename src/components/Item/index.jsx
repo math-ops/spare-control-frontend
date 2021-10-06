@@ -7,7 +7,7 @@ export default function Item(){
   return(
     <>
     <Topbar />
-      <Title>Spare Control Adicionar Item</Title>
+      <Title>Adicionar Item</Title>
       <Items>
         <Label className="id">ID</Label>
         <Input  className="id-input" placeholder="ID" />

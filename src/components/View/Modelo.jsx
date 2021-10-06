@@ -27,52 +27,35 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell);
 
 const columns = [
+  { id: 'id', label: 'ID', minWidth: 100 },
   { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
+  { id: 'fabricante', label: 'Fabricante', minWidth: 170 },
+  { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170},
+  
 ];
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
+function createData(id, name, fabricante, dt_cadastro) {
+  return { id, name, fabricante, dt_cadastro };
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
+  createData( 1, 'Modelo 001', 'Fabricante 001', '01-01-2021 10:10:00'),
+  createData( 2, 'Modelo 002', 'Fabricante 001', '01-01-2021 10:10:00'),
+  createData( 3, 'Modelo 003', 'Fabricante 002', '01-01-2021 10:10:00'),
+  createData( 4, 'Modelo 004', 'Fabricante 002', '01-01-2021 10:10:00'),
+  createData( 5, 'Modelo 005', 'Fabricante 003', '01-01-2021 10:10:00'),
+  createData( 6, 'Modelo 006', 'Fabricante 003', '01-01-2021 10:10:00'),
+  createData( 7, 'Modelo 007', 'Fabricante 001', '01-01-2021 10:10:00'),
+  createData( 8, 'Modelo 008', 'Fabricante 003', '01-01-2021 10:10:00'),
+  createData( 9, 'Modelo 009', 'Fabricante 002', '01-01-2021 10:10:00'),
+  createData( 10, 'Modelo 010', 'Fabricante 002', '01-01-2021 10:10:00'),
+  createData( 11, 'Modelo 011', 'Fabricante 003', '01-01-2021 10:10:00'),
+  createData( 12, 'Modelo 012', 'Fabricante 001', '01-01-2021 10:10:00'),
+  createData( 13, 'Modelo 013', 'Fabricante 003', '01-01-2021 10:10:00'),
+  createData( 14, 'Modelo 014', 'Fabricante 004', '01-01-2021 10:10:00'),
+  createData( 15, 'Modelo 015', 'Fabricante 004', '01-01-2021 10:10:00'),
+  createData( 16, 'Modelo 016', 'Fabricante 001', '01-01-2021 10:10:00'),
+  createData( 17, 'Modelo 017', 'Fabricante 003', '01-01-2021 10:10:00'),
 ];
 
 const useStyles = makeStyles({

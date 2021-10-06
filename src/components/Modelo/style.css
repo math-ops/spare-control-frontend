@@ -1,0 +1,23 @@
+
+.model{
+  margin-top: 110px;
+}
+
+.model-input{
+  margin-top: 140px;
+}
+
+.cad-button{
+  margin-top: 205px;
+  margin-left: 85px;
+  transition: transform;
+}
+
+.cad-button:hover{
+  transform: translateY(10px);
+}
+
+.alerta-model{
+  margin-top: 270px;
+  margin-left: 60px;
+}

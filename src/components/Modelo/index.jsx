@@ -9,10 +9,14 @@ export default function Modelo(){
       <Topbar />
       <Title>Adicionar Modelo</Title>
       <Box>
-        <Label className="fab">Nome do Modelo</Label>
-        <Input className="fab-input" placeholder="Modelo"/>
-        <Button className="fab-button">Adicionar</Button>
-        <Alert className="alerta">ALERT MESSAGE</Alert>
+        <Label className="fab">Nome do Fabricante</Label>
+        <Input className="fab-input" placeholder="Fabricante"/>
+
+        <Label className="model">Nome do Modelo</Label>
+        <Input className="model-input" placeholder="Modelo"/>
+
+        <Button className="cad-button">Adicionar</Button>
+        <Alert className="alerta-model">ALERT MESSAGE</Alert>
       </Box>
       
       

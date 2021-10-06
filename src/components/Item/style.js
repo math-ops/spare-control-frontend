@@ -42,10 +42,16 @@ export const Button = styled.a`
   width: 100px;
   height: 50px;
   border: none;
-  border-radius: 25px;
+  border-radius: 15px;
   background: #00c95d; 
   margin-top: 445px;
   margin-left: 120px;
+  cursor: pointer;
+  &:hover{
+    transition: 0.4s ease-out;
+    background: #009a00;
+    color: #fff;
+  }
 `;
 
 export const Strong = styled.strong`
