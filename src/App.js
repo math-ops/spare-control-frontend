@@ -2,7 +2,6 @@ import Sigin from './components/Login'
 import Menu from './components/Menu'
 import Item from './components/Item'
 import GlobalStyle from './styles/global'
-import Footer from './components/Common/Footer'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Fabricante from './components/Fabricante'
 import Modelo from './components/Modelo'
@@ -18,14 +17,12 @@ function App() {
         <Route path="/item" exact component={Item} />
         <Route path="/fabricante" exact component={Fabricante} />
         <Route path="/modelo" exact component={Modelo} />
-        <Route path="/tab_modelo" exact component={ViewModelo} />
+        <Route path="/view" exact component={ViewModelo} />
         
       </Switch>
       
       
       </BrowserRouter>
-     
-      <Footer />
 
       <GlobalStyle />
     </>

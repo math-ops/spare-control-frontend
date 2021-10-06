@@ -1,13 +1,14 @@
 import './style.css'
 import { Title, Subtitle, OptionBox, OptionTitle, Button, Strong } from './style'
 import { Link } from 'react-router-dom'
+import Footer from '../Common/Footer'
 
 export default function Menu(){
   return(
     <>
     <Title>Spare Control</Title>
     <Subtitle>Please, select an option bellow</Subtitle>
-      <div className="menu">;
+      <div className="menu">
 
         {/* Opção 01 */}
         <OptionBox className="first">          
@@ -21,6 +22,16 @@ export default function Menu(){
       
         {/* Opção 02 */}
         <OptionBox className="second">          
+            <OptionTitle>Cadastrar Modelo</OptionTitle>
+            <Link to="/modelo">   
+            <Button href="#">
+            <Strong>SELECT</Strong>  
+            </Button>
+            </Link>
+        </OptionBox>
+        
+        {/* Opção 03 */}
+        <OptionBox className="rd">          
             <OptionTitle>Adicionar Item</OptionTitle>
             <Link to="/item">
             <Button href="#">
@@ -29,27 +40,20 @@ export default function Menu(){
             </Link>
         </OptionBox>
 
-        {/* Opção 03 */}
-        <OptionBox className="rd">          
-            <OptionTitle>Cadastrar Modelo</OptionTitle>
-            <Link to="/modelo">   
-            <Button href="#">
-            <Strong>SELECT</Strong>  
-            </Button>
-            </Link>
-        </OptionBox>
-
         {/* Opção 04 */}
         <OptionBox className="fourth">          
-            <OptionTitle>Visualizar Inseridos</OptionTitle>
-            <Link to="/tab_modelo">
+            <OptionTitle>Visualizar Fabricantes</OptionTitle>
+            <Link to="/view">
             <Button href="#">
             <Strong>SELECT</Strong>  
             </Button>
             </Link>
         </OptionBox>
 
+
       </div>
+
+      <Footer />
     </>
   )
 }

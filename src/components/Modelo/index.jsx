@@ -1,17 +1,13 @@
-import { Title, Box, Label, Input, Button, Alert, Back } from './style'
-import { Link } from 'react-router-dom';
+import { Title, Box, Label, Input, Button, Alert } from './style'
 import './style.css'
-import arrow from '../../styles/assets/return.svg'
+import Topbar from '../Common/Header';
 
 export default function Modelo(){
 
   return(
     <>
+      <Topbar />
       <Title>Adicionar Modelo</Title>
-
-      <Link to="/menu">
-        <Back src={arrow} alt="return" />
-      </Link>
       <Box>
         <Label className="fab">Nome do Modelo</Label>
         <Input className="fab-input" placeholder="Modelo"/>

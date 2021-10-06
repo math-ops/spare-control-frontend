@@ -1,7 +1,7 @@
-import { Title, Box, Label, Input, Button, Alert, Back } from './fabricante'
-import { Link } from 'react-router-dom';
+import { Title, Box, Label, Input, Button, Alert} from './fabricante'
 import './style.css'
-import arrow from '../../styles/assets/return.svg'
+import Topbar from '../Common/Header'
+import Footer from '../Common/Footer'
 
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -156,19 +156,18 @@ export default function Fabricante(){
 
   return(
     <>
+    <Topbar />
       <Title>Adicionar Fabricante</Title>
-
-      <Link to="/menu">
-        <Back src={arrow} alt="return" />
-      </Link>
       <Box>
         <Label className="fab">Nome do Fabricante</Label>
         <Input className="fab-input" placeholder="Fabricante"/>
         <Button className="fab-button">Adicionar</Button>
         <Alert className="alerta">ALERT MESSAGE</Alert>
       </Box>
+
+      <Footer />
       
-      <StickyHeadTable />
+      {/* <StickyHeadTable /> */}
       
     </>
   )

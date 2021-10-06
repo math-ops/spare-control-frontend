@@ -12,15 +12,15 @@ export const Subtitle = styled.h1`
 
 export const Form = styled.form`
   position: absolute;
-  width: 100%;
+  width: 95%;
   height: 500px;
   border: none;
   background: #eee;
   background-image: linear-gradient(to bottom, #009add, #001b94);
   margin-top: 30px;
   margin-bottom: 100px;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 3%;
+  margin-right: 3%;
   border-radius: 10px;
   box-shadow: 0 0 15px #001b94;
 `;
@@ -43,7 +43,7 @@ export const Input = styled.input`
   border: none;
   background: #fff;
   height: 60px;
-  width: 340px;
+  width: 323px;
   border-radius: 5px;
   padding: 15px;
 `;
@@ -64,7 +64,7 @@ export const Button = styled.button`
   width: 150px;
   border-radius: 25px;
   margin-top: 20px;
-  margin-left: 30%;
+  margin-left: 27%;
   &:hover {
     transition: 0.4s ease-out;
     background: #fff;
@@ -84,7 +84,7 @@ export const Remember = styled.h2`
   font-weight: 300;
   text-align: left;
   margin-left: 10%;
-  margin-top: -7%;
+  margin-top: -8%;
   color: #fff;
 `;
 
@@ -97,7 +97,7 @@ export const Alert = styled.h2`
   font-size: 25px;
 
   margin-top: 110px;
-  margin-left: 30%;
+  margin-left: 27%;
 `;
 
 export const Background = styled.img`

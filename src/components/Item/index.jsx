@@ -1,20 +1,19 @@
-import { Link } from 'react-router-dom';
+
 import './style.css'
-import { Title, Items, Label, Input, Button, Strong, Back} from './style'
-import arrow from '../../styles/assets/return.svg'
+import { Title, Items, Label, Input, Button, Strong } from './style'
+import Topbar from '../Common/Header'
+import Footer from '../Common/Footer'
 export default function Item(){
   return(
     <>
+    <Topbar />
       <Title>Spare Control Adicionar Item</Title>
-      <Link to="/menu">
-        <Back src={arrow} alt="return" />
-      </Link>
       <Items>
         <Label className="id">ID</Label>
         <Input  className="id-input" placeholder="ID" />
 
-        <Label className="fab">FABRICANTE</Label>
-        <Input  className="fab-input" placeholder="Fabricante" />
+        <Label className="manf">FABRICANTE</Label>
+        <Input  className="manf-input" placeholder="Fabricante" />
 
         <Label className="mod">MODELO</Label>
         <Input className="mod-input" placeholder="Modelo"/>
@@ -32,6 +31,7 @@ export default function Item(){
           <Strong>Adicionar</Strong>
         </Button>
       </Items>
+      <Footer />
     </>
   )
 }

@@ -1,4 +1,4 @@
-@media only screen and (max-width: 769px){
+
   .id{
     margin-top: 20px;
     margin-left: 20px;
@@ -6,15 +6,17 @@
 
   .id-input{
     margin-top: 43px;
+    padding: 10px;
   }
 
-  .fab{
+  .manf{
     margin-top: 90px;
     margin-left: 20px;
   }
 
-  .fab-input{
+  .manf-input{
     margin-top: 110px;
+    padding: 10px;
   }
 
   .mod{
@@ -24,6 +26,7 @@
 
   .mod-input{
     margin-top: 180px;
+    padding: 10px;
   }
 
   .loc{
@@ -33,6 +36,7 @@
 
   .loc-input{
     margin-top: 250px;
+    padding: 10px;
   }
 
   .area{
@@ -42,6 +46,7 @@
 
   .area-input{
     margin-top: 320px;
+    padding: 10px;
   }
 
   .qtd {
@@ -51,5 +56,5 @@
 
   .qtd-input{
     margin-top: 390px; 
+    padding: 10px;
   }
-}

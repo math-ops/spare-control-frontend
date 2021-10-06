@@ -1,4 +1,6 @@
 import React from 'react';
+import Topbar from '../Common/Header'
+
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -8,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import { Title } from '../Menu/style'
 
 //Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
@@ -75,7 +78,7 @@ const rows = [
 const useStyles = makeStyles({
   root: {
     width: '95%',
-    marginTop: '320px',
+    marginTop: '20px',
     marginLeft: '10px',
     marginRight: '10px',
   },
@@ -149,6 +152,8 @@ export function StickyHeadTable() {
 export default function ViewModelo(){
   return(
     <>
+      <Topbar />
+      <Title>Lista de Fabricantes Cadastrados</Title>
       <StickyHeadTable />
     </>
   )
