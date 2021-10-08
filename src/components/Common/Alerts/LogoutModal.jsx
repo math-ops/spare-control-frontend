@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Modal, Message, Button, Cancelar, AlertBox } from './style'
+import { Modal, MessageLogout, Button, Cancelar, AlertBox } from './style'
 import './style.css'
 
 const name = 'Matheus Pereira'
@@ -10,7 +10,7 @@ export default function LogoutModal(){
     <>
       <Modal>
         <AlertBox>
-        <Message>Logado como {name}. Deseja Sair?</Message>
+        <MessageLogout>Logado como {name}. Deseja Sair?</MessageLogout>
         <Link to="/menu">
         <Cancelar>voltar ao menu</Cancelar>
         </Link>

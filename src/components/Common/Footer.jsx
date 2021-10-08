@@ -16,6 +16,6 @@ export const Foot = styled.footer`
   font-size: 25px;
   color: #fff;
   opacity: 0.8;
-  margin-top: 225%;
+  margin-top: 325%;
   margin-left: 0;
 `;

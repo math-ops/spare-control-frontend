@@ -1,0 +1,55 @@
+.local-box{
+  margin-top: 13%;
+  margin-left: 20px;
+}
+
+.local {
+  margin: 20px;
+}
+
+.local-input{
+  margin-top: 50px;
+}
+
+.local-button{
+  margin-top: 110px;
+  margin-left: 85px;
+  transition: transform;
+}
+
+.local-button:hover{
+  transform: translateY(10px);
+}
+
+.local.alerta{
+  margin-top: 200px;
+  margin-left: 60px;
+}
+
+.area-box{
+  margin-top: 70%;
+  margin-left: 20px;
+}
+
+.area {
+  margin: 20px;
+}
+
+.area-input{
+  margin-top: 50px;
+}
+
+.area-button{
+  margin-top: 110px;
+  margin-left: 85px;
+  transition: transform;
+}
+
+.area-button:hover{
+  transform: translateY(10px);
+}
+
+.area.alerta{
+  margin-top: 200px;
+  margin-left: 60px;
+}

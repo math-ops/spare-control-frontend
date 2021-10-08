@@ -60,6 +60,26 @@ export default function Menu(){
           </Link>
         </OptionBox>
 
+        {/* Opção 06 */}
+        <OptionBox className="menu-local">
+          <OptionTitle>Cadastrar Local</OptionTitle>
+          <Link to="/local">
+            <Button href="#">
+              <Strong>SELECT</Strong>
+            </Button>
+          </Link>
+        </OptionBox>
+
+      {/* Opção 07 */}
+      <OptionBox className="view-local">
+        <OptionTitle>Visualizar Locais/Áreas</OptionTitle>
+        <Link to="/viewloc">
+          <Button href="#">
+            <Strong>SELECT</Strong>
+          </Button>
+        </Link>
+      </OptionBox>
+
       </div>
 
       <Footer />

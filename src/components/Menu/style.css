@@ -1,27 +1,36 @@
 @media only screen and (max-width: 769px){
- 
+  
   .first{
     margin-top: 20px;
     margin-left: 55px;
   }
-
+  
   .second{
     margin-top: 180px;
     margin-left: 55px;
   }
-
+  
   .rd{
     margin-top: 340px;
     margin-left: 55px;
   }
-
-  .fourth{
+  
+  .menu-local{
     margin-top: 500px;
+    margin-left: 55px;
+  }
+  .fourth{
+    margin-top: 660px;
     margin-left: 55px;
   }
 
   .view-model{
-    margin-top: 660px;
+    margin-top: 820px;
+    margin-left: 55px;
+  }
+
+  .view-local {
+    margin-top: 980px;
     margin-left: 55px;
   }
 

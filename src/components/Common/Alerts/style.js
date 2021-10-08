@@ -39,7 +39,7 @@ export const Cancelar = styled.a`
   margin-top: 30%;
 `;
 
-export const Message = styled.h2`
+export const MessageLogout = styled.h2`
   text-align: center;
   font-family: 'Popins', sans-serif;
   font-weight: 300;
@@ -49,10 +49,28 @@ export const Message = styled.h2`
 
 `;
 
+export const MessageCadastro = styled.h2`
+  text-align: center;
+  font-family: 'Popins', sans-serif;
+  font-weight: 300;
+  color: #333;
+  font-size: 25px;
+  margin-top: 45%;
+
+`;
+
 export const AlertBox = styled.div`
   width: 95%;
   height: 50%;
   background: rgba(255,255,255, 1);
   border: 1px solid #000;
+`;
+
+export const Vector = styled.img`
+  width: 30%;
+  height: 30%;
+  position: fixed;
+  margin-left: 33%;
+  margin-top: -5%;
 `;
 
