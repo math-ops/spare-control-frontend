@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import back from '../../styles/assets/returnblk.svg'
 import logout from '../../styles/assets/logout.svg'
 
-
 export default function Topbar(){
   return(
     <>
@@ -15,7 +14,7 @@ export default function Topbar(){
           </Return>
         </Link>
 
-        <Link to="/">
+        <Link to="/logout">
           <Logout>
             <Svg src={logout}/>
           </Logout>

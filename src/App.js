@@ -7,6 +7,7 @@ import Fabricante from './components/Fabricante'
 import Modelo from './components/Modelo'
 import ViewFabricante from './components/View/Fabricante'
 import ViewModelo from './components/View/Modelo'
+import LogoutModal from './components/Common/Alerts/LogoutModal'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/modelo" exact component={Modelo} />
         <Route path="/viewfab" exact component={ViewFabricante} />
         <Route path="/viewmod" exact component={ViewModelo} />
+        <Route path="/logout" exact component={LogoutModal} />
 
         
       </Switch>
