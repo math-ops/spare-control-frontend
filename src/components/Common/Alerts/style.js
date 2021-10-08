@@ -35,7 +35,7 @@ export const Cancelar = styled.a`
   position: absolute;
   text-align: center;
   margin-right: auto;
-  margin-left: 40%;
+  margin-left: 30%;
   margin-top: 30%;
 `;
 
