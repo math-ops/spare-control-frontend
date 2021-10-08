@@ -8,6 +8,7 @@ import Modelo from './components/Modelo'
 import Local from './components/Local'
 import ViewFabricante from './components/View/Fabricante'
 import ViewModelo from './components/View/Modelo'
+import ViewArea from './components/Area'
 import ViewLocal from './components/View/Local'
 import LogoutModal from './components/Common/Alerts/LogoutModal'
 import CadastroModal from './components/Common/Alerts/CadastoModal'
@@ -26,6 +27,7 @@ function App() {
         <Route path="/viewfab" exact component={ViewFabricante} />
         <Route path="/viewmod" exact component={ViewModelo} />
         <Route path="/viewloc" exact component={ViewLocal} />
+        <Route path="/viewarea" exact component={ViewArea} />
         <Route path="/logout" exact component={LogoutModal} />
         <Route path="/sucesso" exact component={CadastroModal} />
 

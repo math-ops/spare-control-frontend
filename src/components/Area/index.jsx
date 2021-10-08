@@ -137,21 +137,18 @@ export function StickyHeadTable() {
   );
 }
 
-
-export default function ViewLocal(){
+export default function Area(){
   return(
     <>
-
-<Topbar />
-      <Title>Lista de Locais/Áreas Cadastrados</Title>
-      <Box className="local-box">
-        <Label className="local">Local</Label>
-        <Input className="local-input" placeholder="Local" />
-        <Button className="local-button">Adicionar</Button>
+    <Topbar />
+    <Title>Cadastro de Áreas</Title>
+      <Box className="area-box">
+        <Label className="area">Área</Label>
+        <Input className="area-input" placeholder="Área"/>
+        <Button className="area-button">Adicionar</Button>
       </Box>
 
       <StickyHeadTable />
     </>
   )
 }
-
