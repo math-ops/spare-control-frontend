@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Topbar from '../Common/Header'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -11,6 +11,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Title } from '../Menu/style'
+
+import axios from 'axios'
+
+const baseURL = 'https://localhost:3333/modelo'
 
 //Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
@@ -34,30 +38,6 @@ const columns = [
   
 ];
 
-function createData(id, name, fabricante, dt_cadastro) {
-  return { id, name, fabricante, dt_cadastro };
-}
-
-const rows = [
-  createData( 1, 'Modelo 001', 'Fabricante 001', '01-01-2021 10:10:00'),
-  createData( 2, 'Modelo 002', 'Fabricante 001', '01-01-2021 10:10:00'),
-  createData( 3, 'Modelo 003', 'Fabricante 002', '01-01-2021 10:10:00'),
-  createData( 4, 'Modelo 004', 'Fabricante 002', '01-01-2021 10:10:00'),
-  createData( 5, 'Modelo 005', 'Fabricante 003', '01-01-2021 10:10:00'),
-  createData( 6, 'Modelo 006', 'Fabricante 003', '01-01-2021 10:10:00'),
-  createData( 7, 'Modelo 007', 'Fabricante 001', '01-01-2021 10:10:00'),
-  createData( 8, 'Modelo 008', 'Fabricante 003', '01-01-2021 10:10:00'),
-  createData( 9, 'Modelo 009', 'Fabricante 002', '01-01-2021 10:10:00'),
-  createData( 10, 'Modelo 010', 'Fabricante 002', '01-01-2021 10:10:00'),
-  createData( 11, 'Modelo 011', 'Fabricante 003', '01-01-2021 10:10:00'),
-  createData( 12, 'Modelo 012', 'Fabricante 001', '01-01-2021 10:10:00'),
-  createData( 13, 'Modelo 013', 'Fabricante 003', '01-01-2021 10:10:00'),
-  createData( 14, 'Modelo 014', 'Fabricante 004', '01-01-2021 10:10:00'),
-  createData( 15, 'Modelo 015', 'Fabricante 004', '01-01-2021 10:10:00'),
-  createData( 16, 'Modelo 016', 'Fabricante 001', '01-01-2021 10:10:00'),
-  createData( 17, 'Modelo 017', 'Fabricante 003', '01-01-2021 10:10:00'),
-];
-
 const useStyles = makeStyles({
   root: {
     width: '95%',
@@ -74,6 +54,14 @@ export function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [data, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios.get(baseURL).then((res) => {
+      console.log(res.data);
+      setTableData(res.data);
+    })
+  }, []);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -102,7 +90,7 @@ export function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
@@ -122,7 +110,7 @@ export function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={data.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

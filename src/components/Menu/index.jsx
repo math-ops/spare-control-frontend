@@ -32,7 +32,7 @@ export default function Menu(){
         
         {/* Opção 03 */}
         <OptionBox className="rd">          
-            <OptionTitle>Adicionar Item</OptionTitle>
+            <OptionTitle>Cadastrar Equipamento</OptionTitle>
             <Link to="/item">
             <Button href="#">
             <Strong>SELECT</Strong>  
@@ -41,7 +41,7 @@ export default function Menu(){
         </OptionBox>
 
         {/* Opção 04 */}
-        <OptionBox className="fourth">          
+        <OptionBox className="view-local">          
             <OptionTitle>Visualizar Modelos</OptionTitle>
             <Link to="/viewmod">
             <Button href="#">
@@ -71,9 +71,9 @@ export default function Menu(){
         </OptionBox>
 
       {/* Opção 07 */}
-      <OptionBox className="view-local">
-        <OptionTitle>Visualizar Locais/Áreas</OptionTitle>
-        <Link to="/viewloc">
+      <OptionBox className="fourth">
+        <OptionTitle>Cadastrar Áreas</OptionTitle>
+        <Link to="/area">
           <Button href="#">
             <Strong>SELECT</Strong>
           </Button>

@@ -2,7 +2,7 @@ import Topbar from '../Common/Header'
 import { Title, Box, Label, Input, Button } from './style'
 import './style.css'
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -16,6 +16,9 @@ import TableRow from '@material-ui/core/TableRow';
 // eslint-disable-next-line
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import axios from 'axios';
+
+const baseURL = 'https://localhost:3333/predio'
 
 //Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
@@ -33,40 +36,17 @@ const StyledTableCell = withStyles((theme) => ({
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'name', label: 'Local/Área', minWidth: 170 },
-  { id: 'type', label: 'Tipo', minWidth: 170 },
+  { id: 'name', label: 'Área', minWidth: 170 },
+  { id: 'nm_predio', label: 'Nome do Prédio', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
   
 ];
 
-function createData(id, name, type, dt_cadastro) {
-  return { id, name, type, dt_cadastro };
-}
-
-const rows = [
-  createData( 1, 'Teste 001', 'Area', '01-01-2021 10:10:00'),
-  createData( 2, 'Teste 002', 'Local', '01-01-2021 10:10:00'),
-  createData( 3, 'Teste 003', 'Area', '01-01-2021 10:10:00'),
-  createData( 4, 'Teste 004', 'Area', '01-01-2021 10:10:00'),
-  createData( 5, 'Teste 005', 'Local', '01-01-2021 10:10:00'),
-  createData( 6, 'Teste 006', 'Local', '01-01-2021 10:10:00'),
-  createData( 7, 'Teste 007', 'Area', '01-01-2021 10:10:00'),
-  createData( 8, 'Teste 008', 'Local', '01-01-2021 10:10:00'),
-  createData( 9, 'Teste 009', 'Local', '01-01-2021 10:10:00'),
-  createData( 10, 'Teste 010', 'Area', '01-01-2021 10:10:00'),
-  createData( 11, 'Teste 011', 'Area', '01-01-2021 10:10:00'),
-  createData( 12, 'Teste 012', 'Area', '01-01-2021 10:10:00'),
-  createData( 13, 'Teste 013', 'Local', '01-01-2021 10:10:00'),
-  createData( 14, 'Teste 014', 'Local', '01-01-2021 10:10:00'),
-  createData( 15, 'Teste 015', 'Area', '01-01-2021 10:10:00'),
-  createData( 16, 'Teste 016', 'Area', '01-01-2021 10:10:00'),
-  createData( 17, 'Teste 017', 'Local', '01-01-2021 10:10:00'),
-];
 
 const useStyles = makeStyles({
   root: {
     width: '95%',
-    marginTop: '20px',
+    marginTop: '220px',
     marginLeft: '10px',
     marginRight: '10px',
   },
@@ -79,6 +59,15 @@ export function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const [data, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios.get(baseURL).then((res) => {
+      console.log(res.data);
+      setTableData(res.data);
+    })
+  }, [])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -107,7 +96,7 @@ export function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
@@ -127,7 +116,7 @@ export function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={data.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
@@ -142,10 +131,10 @@ export default function Area(){
     <>
     <Topbar />
     <Title>Cadastro de Áreas</Title>
-      <Box className="area-box">
-        <Label className="area">Área</Label>
-        <Input className="area-input" placeholder="Área"/>
-        <Button className="area-button">Adicionar</Button>
+      <Box className="area-cad-box">
+        <Label className="area-cad-label">Área</Label>
+        <Input className="area-cad-input" placeholder="Área"/>
+        <Button className="area-cad-button">Adicionar</Button>
       </Box>
 
       <StickyHeadTable />

@@ -1,8 +1,33 @@
+import React, { useState } from 'react'
 import { Title, Box, Label, Input, Button, Alert } from './style'
 import './style.css'
 import Topbar from '../Common/Header';
+import axios from 'axios'
+
+const baseURL = 'https://localhost:3333/modelo'
 
 export default function Modelo(){
+
+  const [setTableData] = useState([]);
+  const [modelo, setModelo] = useState({
+    id: '',
+    nm_modelo: '',
+  })
+
+  const inserir = async() => {
+    await axios.post(baseURL, modelo).then(res => {
+      setTableData((res.data))
+    })
+  }
+
+  const handleChange = e => {
+    const {name, value} = e.target;
+    setModelo(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+    console.log(modelo)
+  }
 
   return(
     <>
@@ -13,9 +38,9 @@ export default function Modelo(){
         <Input className="fab-input" placeholder="Fabricante"/>
 
         <Label className="model">Nome do Modelo</Label>
-        <Input className="model-input" placeholder="Modelo"/>
+        <Input className="model-input" placeholder="Modelo" onChange={handleChange}/>
 
-        <Button className="cad-button">Adicionar</Button>
+        <Button className="cad-button" onClick={() => inserir()}>Adicionar</Button>
         <Alert className="alerta-model">ALERT MESSAGE</Alert>
       </Box>
       

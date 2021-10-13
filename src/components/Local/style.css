@@ -1,55 +1,37 @@
-.local-box{
-  margin-top: 13%;
+.local-cod-label{
+  margin-top: 20px;
   margin-left: 20px;
 }
 
-.local {
-  margin: 20px;
+.local-cod-input{
+margin-top: 40px;
 }
 
-.local-input{
-  margin-top: 50px;
+.local-name-label{
+  margin-top: 90px;
+
 }
 
-.local-button{
-  margin-top: 110px;
+.local-name-input{
+margin-top: 110px;
+}
+
+.local-predio-label{
+  margin-top: 165px;
+
+}
+
+.local-predio-input{
+margin-top: 185px;
+}
+
+.local-cad-button{
+  margin-top: 240px;
   margin-left: 85px;
   transition: transform;
 }
 
-.local-button:hover{
+.local-cad-button:hover{
   transform: translateY(10px);
 }
 
-.local.alerta{
-  margin-top: 200px;
-  margin-left: 60px;
-}
-
-.area-box{
-  margin-top: 70%;
-  margin-left: 20px;
-}
-
-.area {
-  margin: 20px;
-}
-
-.area-input{
-  margin-top: 50px;
-}
-
-.area-button{
-  margin-top: 110px;
-  margin-left: 85px;
-  transition: transform;
-}
-
-.area-button:hover{
-  transform: translateY(10px);
-}
-
-.area.alerta{
-  margin-top: 200px;
-  margin-left: 60px;
-}

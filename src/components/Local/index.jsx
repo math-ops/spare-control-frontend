@@ -1,8 +1,9 @@
 import Topbar from '../Common/Header'
 import { Title, Box, Label, Input, Button } from './style'
 import './style.css'
+import axios from 'axios'
 
-import React from 'react';
+import React, { useState, useEffect } from 'react'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -17,7 +18,8 @@ import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
-//Estilização das Células
+const baseURL = 'https://localhost:3333/local'
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: '#001b94',
@@ -33,40 +35,16 @@ const StyledTableCell = withStyles((theme) => ({
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'name', label: 'Local/Área', minWidth: 170 },
-  { id: 'type', label: 'Tipo', minWidth: 170 },
+  { id: 'nm_local', label: 'Local', minWidth: 170 },
+  { id: 'nm_predio', label: 'Nome Predio', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
   
-];
-
-function createData(id, name, type, dt_cadastro) {
-  return { id, name, type, dt_cadastro };
-}
-
-const rows = [
-  createData( 1, 'Teste 001', 'Area', '01-01-2021 10:10:00'),
-  createData( 2, 'Teste 002', 'Local', '01-01-2021 10:10:00'),
-  createData( 3, 'Teste 003', 'Area', '01-01-2021 10:10:00'),
-  createData( 4, 'Teste 004', 'Area', '01-01-2021 10:10:00'),
-  createData( 5, 'Teste 005', 'Local', '01-01-2021 10:10:00'),
-  createData( 6, 'Teste 006', 'Local', '01-01-2021 10:10:00'),
-  createData( 7, 'Teste 007', 'Area', '01-01-2021 10:10:00'),
-  createData( 8, 'Teste 008', 'Local', '01-01-2021 10:10:00'),
-  createData( 9, 'Teste 009', 'Local', '01-01-2021 10:10:00'),
-  createData( 10, 'Teste 010', 'Area', '01-01-2021 10:10:00'),
-  createData( 11, 'Teste 011', 'Area', '01-01-2021 10:10:00'),
-  createData( 12, 'Teste 012', 'Area', '01-01-2021 10:10:00'),
-  createData( 13, 'Teste 013', 'Local', '01-01-2021 10:10:00'),
-  createData( 14, 'Teste 014', 'Local', '01-01-2021 10:10:00'),
-  createData( 15, 'Teste 015', 'Area', '01-01-2021 10:10:00'),
-  createData( 16, 'Teste 016', 'Area', '01-01-2021 10:10:00'),
-  createData( 17, 'Teste 017', 'Local', '01-01-2021 10:10:00'),
 ];
 
 const useStyles = makeStyles({
   root: {
     width: '95%',
-    marginTop: '20px',
+    marginTop: '360px',
     marginLeft: '10px',
     marginRight: '10px',
   },
@@ -79,6 +57,18 @@ export function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const [data, setTableData] = useState([]);
+
+  useEffect(() => {
+    axios.get(baseURL)
+      .then((res) => {
+        console.log(res.data);
+        setTableData(res.data);
+      })
+  }, []);
+
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -107,7 +97,7 @@ export function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   {columns.map((column) => {
@@ -127,7 +117,7 @@ export function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={data.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
@@ -137,20 +127,47 @@ export function StickyHeadTable() {
   );
 }
 
-
 export default function ViewLocal(){
+
+  const [setTableData] = useState([]);
+  const [local, setLocal] = useState({
+    id: '',
+    cd_local: '',
+    nm_local: '',
+    id_predio: '', 
+  })
+
+  const inserir = async() => {
+    await axios.post(baseURL, local).then(res => {
+      setTableData((res.data))
+    })
+  }
+
+  const handleChange = e => {
+    const {name, value} = e.target;
+    setLocal(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+    console.log(local)
+  }
+
   return(
     <>
 
 <Topbar />
-      <Title>Lista de Locais/Áreas Cadastrados</Title>
+      <Title>Cadastrar Locais</Title>
       <Box className="local-box">
-        <Label className="local">Local</Label>
-        <Input className="local-input" placeholder="Local" />
-        <Button className="local-button">Adicionar</Button>
+        <Label className="local-cod-label" >Código Local</Label>
+        <Input className="local-cod-input" name="cd_local" placeholder="Código Local" onChange={handleChange} />
+        <Label className="local-name-label" >Nome Local</Label>
+        <Input className="local-name-input" name="nm_local" placeholder="Nome Local" onChange={handleChange} />
+        <Label className="local-predio-label">ID Prédio</Label>
+        <Input className="local-predio-input" name="id_predio" placeholder="ID Prédio" onChange={handleChange}/>
+        <Button className="local-cad-button" onClick={() => inserir()}>Adicionar</Button>
       </Box>
 
-      <StickyHeadTable />
+    <StickyHeadTable />
     </>
   )
 }

@@ -1,60 +1,60 @@
 
-  .id{
+  .item-id{
     margin-top: 20px;
     margin-left: 20px;
   }
 
-  .id-input{
+  .item-id-input{
     margin-top: 43px;
     padding: 10px;
   }
 
-  .manf{
+  .item-manf{
     margin-top: 90px;
     margin-left: 20px;
   }
 
-  .manf-input{
+  .item-manf-input{
     margin-top: 110px;
     padding: 10px;
   }
 
-  .mod{
+  .item-mod{
     margin-top: 160px;
     margin-left: 20px;
   }
 
-  .mod-input{
+  .item-mod-input{
     margin-top: 180px;
     padding: 10px;
   }
 
-  .loc{
+  .item-loc{
     margin-top: 230px;
     margin-left: 20px;
   }
 
-  .loc-input{
+  .item-loc-input{
     margin-top: 250px;
     padding: 10px;
   }
 
-  .area{
+  .item-area{
     margin-top: 300px;
     margin-left: 20px;
   }
 
-  .area-input{
+  .item-area-input{
     margin-top: 320px;
     padding: 10px;
   }
 
-  .qtd {
+  .item-qtd {
     margin-top: 370px;
     margin-left: 20px;
   }
 
-  .qtd-input{
+  .item-qtd-input{
     margin-top: 390px; 
     padding: 10px;
   }

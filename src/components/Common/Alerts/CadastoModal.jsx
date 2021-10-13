@@ -8,6 +8,8 @@ export default function CadastroModal(){
         <AlertBox>
           <Vector src={success} alt="sucesso"/>
           <MessageCadastro>Cadastrado com Sucesso!</MessageCadastro>
+          <Cancelar>Retornar ao menu</Cancelar>
+          <Button>Novo Cadastro</Button>
         </AlertBox>
       </Modal>
     </>
