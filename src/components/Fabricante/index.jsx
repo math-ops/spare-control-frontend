@@ -5,7 +5,7 @@ import Footer from '../Common/Footer'
 import axios from 'axios'
 import React, { useState } from 'react'
 
-const baseURL = 'http:://localhost:3333/fabricante'
+const baseURL = 'http://localhost:3333/fabricante'
 
 export default function Fabricante(){
   const [setTableData] = useState([]);

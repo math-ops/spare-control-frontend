@@ -19,7 +19,7 @@ export const Button = styled.button`
   height: 10%;
   position: fixed;
   margin-right: auto;
-  margin-left: 30%;
+  margin-left: 33%;
   margin-top: 5%;
   border: none;
   background-color: #009add;
@@ -35,7 +35,6 @@ export const Cancelar = styled.a`
   position: absolute;
   text-align: center;
   margin-right: auto;
-  margin-left: 30%;
   margin-top: 30%;
 `;
 

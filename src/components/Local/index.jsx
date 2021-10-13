@@ -18,7 +18,7 @@ import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
-const baseURL = 'https://localhost:3333/local'
+const baseURL = 'http://localhost:3333/local'
 
 const StyledTableCell = withStyles((theme) => ({
   head: {

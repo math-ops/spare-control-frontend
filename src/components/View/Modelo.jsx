@@ -14,7 +14,7 @@ import { Title } from '../Menu/style'
 
 import axios from 'axios'
 
-const baseURL = 'https://localhost:3333/modelo'
+const baseURL = 'http://localhost:3333/modelo'
 
 //Estilização das Células
 const StyledTableCell = withStyles((theme) => ({

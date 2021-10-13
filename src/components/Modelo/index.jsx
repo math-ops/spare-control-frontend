@@ -4,7 +4,7 @@ import './style.css'
 import Topbar from '../Common/Header';
 import axios from 'axios'
 
-const baseURL = 'https://localhost:3333/modelo'
+const baseURL = 'http://localhost:3333/modelo'
 
 export default function Modelo(){
 

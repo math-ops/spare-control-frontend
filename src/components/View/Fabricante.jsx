@@ -14,9 +14,10 @@ import { Title } from '../Menu/style'
 // eslint-disable-next-line
 import moment from 'moment'
 import 'moment/locale/pt-br'
+
 import axios from 'axios'
 
-const baseURL = 'https://localhost:3333/fabricante'
+const baseURL = 'http://localhost:3333/fabricante'
 
 
 //Estilização das Células
@@ -35,7 +36,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'name', label: 'Nome Fabricante', minWidth: 170 },
+  { id: 'nm_fabricante', label: 'Nome Fabricante', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
   
 ];

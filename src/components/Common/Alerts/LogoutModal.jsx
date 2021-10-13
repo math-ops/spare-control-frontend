@@ -12,7 +12,7 @@ export default function LogoutModal(){
         <AlertBox>
         <MessageLogout>Logado como {name}. Deseja Sair?</MessageLogout>
         <Link to="/menu">
-        <Cancelar>voltar ao menu</Cancelar>
+        <Cancelar className="logout-modal-cancel">voltar ao menu</Cancelar>
         </Link>
         <Link to="/">
         <Button>SAIR</Button>
