@@ -1,9 +1,6 @@
+import React, { useEffect, useState } from 'react'
 import Topbar from '../Common/Header'
-import { Title, Box, Label, Input, Button } from './style'
-import './style.css'
-import axios from 'axios'
-
-import React, { useState, useEffect } from 'react'
+import { Title } from '../Menu/style'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -14,12 +11,15 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
-const baseURL = 'http://localhost:3333/local'
+import axios from 'axios'
 
+const baseURL = 'http://localhost:3333/equipamento'
+
+
+//Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: '#001b94',
@@ -35,8 +35,10 @@ const StyledTableCell = withStyles((theme) => ({
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'nm_local', label: 'Local', minWidth: 170 },
-  { id: 'nm_predio', label: 'Nome Predio', minWidth: 170 },
+  { id: 'cd_equipamento', label: 'Cod. Fabricante', minWidth: 170 },
+  { id: 'cd_prefixo', label: 'Prefixo', minWidth: 170 },
+  { id: 'nm_fabricante', label: 'Fabricante', minWidth: 170 },
+  { id: 'nm_modelo', label: 'Modelo', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
   
 ];
@@ -44,7 +46,7 @@ const columns = [
 const useStyles = makeStyles({
   root: {
     width: '95%',
-    marginTop: '360px',
+    marginTop: '20px',
     marginLeft: '10px',
     marginRight: '10px',
   },
@@ -57,17 +59,15 @@ export function StickyHeadTable() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
   const [data, setTableData] = useState([]);
 
   useEffect(() => {
     axios.get(baseURL)
-      .then((res) => {
-        console.log(res.data);
-        setTableData(res.data);
-      })
+    .then((res) => {
+      console.log(res.data);
+      setTableData(res.data);
+    })
   }, []);
-
 
 
   const handleChangePage = (event, newPage) => {
@@ -78,6 +78,10 @@ export function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  moment.locale();
+
+  moment(data.dt_cadastro).format('L - h:mm A');
 
   return (
     <Paper className={classes.root}>
@@ -101,11 +105,13 @@ export function StickyHeadTable() {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                   <StyledTableCell align="left">{row.id}</StyledTableCell>
-                  <StyledTableCell align="left">{row.nm_local}</StyledTableCell>
-                  <StyledTableCell align="left">{row.nm_predio}</StyledTableCell>
+                  <StyledTableCell align="left">{row.cd_equipamento}</StyledTableCell>
+                  <StyledTableCell align="left">{row.cd_prefixo}</StyledTableCell>
+                  <StyledTableCell align="left">{row.nm_fabricante}</StyledTableCell>
+                  <StyledTableCell align="left">{row.nm_modelo}</StyledTableCell>
                   <StyledTableCell align="left">{moment(row.dt_cadastro).format('L - h:mm A')}</StyledTableCell>
                 </TableRow>
-              );
+               );
             })}
           </TableBody>
         </Table>
@@ -123,48 +129,14 @@ export function StickyHeadTable() {
   );
 }
 
-export default function ViewLocal(){
 
-  const [setTableData] = useState([]);
-  const [local, setLocal] = useState({
-    id: '',
-    cd_local: '',
-    nm_local: '',
-    id_predio: '', 
-  })
 
-  const inserir = async() => {
-    await axios.post(baseURL, local).then(res => {
-      setTableData((res.data))
-    })
-  }
-
-  const handleChange = e => {
-    const {name, value} = e.target;
-    setLocal(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-    console.log(local)
-  }
-
+export default function ViewItem(){
   return(
     <>
-
-<Topbar />
-      <Title>Cadastrar Locais</Title>
-      <Box className="local-box">
-        <Label className="local-cod-label" >Código Local</Label>
-        <Input className="local-cod-input" name="cd_local" placeholder="Código Local" onChange={handleChange} />
-        <Label className="local-name-label" >Nome Local</Label>
-        <Input className="local-name-input" name="nm_local" placeholder="Nome Local" onChange={handleChange} />
-        <Label className="local-predio-label">ID Prédio</Label>
-        <Input className="local-predio-input" name="id_predio" placeholder="ID Prédio" onChange={handleChange}/>
-        <Button className="local-cad-button" onClick={() => inserir()}>Adicionar</Button>
-      </Box>
-
-    <StickyHeadTable />
+      <Topbar />
+      <Title>Equipamentos Cadastrados</Title>
+      <StickyHeadTable />
     </>
   )
 }
-

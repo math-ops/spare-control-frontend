@@ -11,7 +11,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Title } from '../Menu/style'
-// eslint-disable-next-line
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
@@ -77,6 +76,10 @@ export function StickyHeadTable() {
     setPage(0);
   };
 
+  moment.locale();
+
+  moment(data.dt_cadastro).format('L - h:mm A');
+
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -98,14 +101,9 @@ export function StickyHeadTable() {
             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <StyledTableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </StyledTableCell>
-                    );
-                  })}
+                  <StyledTableCell align="left">{row.id}</StyledTableCell>
+                  <StyledTableCell align="left">{row.nm_fabricante}</StyledTableCell>
+                  <StyledTableCell align="left">{moment(row.dt_cadastro).format('L - h:mm A')}</StyledTableCell>
                 </TableRow>
                );
             })}

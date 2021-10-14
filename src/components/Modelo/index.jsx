@@ -34,11 +34,9 @@ export default function Modelo(){
       <Topbar />
       <Title>Adicionar Modelo</Title>
       <Box>
-        <Label className="fab">Nome do Fabricante</Label>
-        <Input className="fab-input" placeholder="Fabricante"/>
-
+        
         <Label className="model">Nome do Modelo</Label>
-        <Input className="model-input" placeholder="Modelo" onChange={handleChange}/>
+        <Input className="model-input" name="nm_modelo" placeholder="Modelo" onChange={handleChange}/>
 
         <Button className="cad-button" onClick={() => inserir()}>Adicionar</Button>
         <Alert className="alerta-model">ALERT MESSAGE</Alert>

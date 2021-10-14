@@ -11,6 +11,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Title } from '../Menu/style'
+import moment from 'moment'
+import 'moment/locale/pt-br'
 
 import axios from 'axios'
 
@@ -32,8 +34,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'fabricante', label: 'Fabricante', minWidth: 170 },
+  { id: 'nm_modelo', label: 'Modelo', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170},
   
 ];
@@ -93,14 +94,9 @@ export function StickyHeadTable() {
             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <StyledTableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </StyledTableCell>
-                    );
-                  })}
+                  <StyledTableCell algin="left">{row.id}</StyledTableCell>
+                  <StyledTableCell algin="left">{row.nm_modelo}</StyledTableCell>
+                  <StyledTableCell algin="left">{moment(row.dt_cadastro).format('L - h:mm A')}</StyledTableCell>
                 </TableRow>
               );
             })}

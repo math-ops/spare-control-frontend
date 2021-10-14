@@ -3,20 +3,29 @@
   margin-left: 20px;
 }
 
-.area-cad-label{
+.predio-cod-label{
   margin-top: 20px;
 }
 
-.area-cad-input{
+.predio-cod-input{
   margin-top: 40px;
 }
 
+.predio-name-label{
+  margin-top: 100px;
+}
+
+.predio-name-input{
+  margin-top: 130px;
+}
+
+
 .area-cad-button{
-  margin-top: 110px;
+  margin-top: 195px;
   margin-left: 85px;
   transition: transform;
 }
 
 .area-cad-button:hover{
-  transform: translateY(20px);
+  transform: scale(1.1);
 }

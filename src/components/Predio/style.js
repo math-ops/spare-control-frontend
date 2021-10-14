@@ -13,7 +13,7 @@ export const Title = styled.h1`
 export const Box = styled.form`
   position: absolute;
   width: 90%;
-  height: 30%;
+  height: 40%;
   border: none;
   background: #eee;
   border-radius: 3px;

@@ -80,9 +80,17 @@ export default function Menu(){
         </Link>
       </OptionBox>
 
-      </div>
+      {/* Opção 08 */}
+      <OptionBox className="view-equip">
+        <OptionTitle>Vizualizar Equipamentos</OptionTitle>
+        <Link to="/viewitem">
+          <Button href="#">
+            <Strong>SELECT</Strong>
+          </Button>
+        </Link>
+      </OptionBox>
 
-      <Footer />
+      </div>
     </>
   )
 }

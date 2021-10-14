@@ -37,7 +37,7 @@ export default function Fabricante(){
       <Title>Adicionar Fabricante</Title>
       <Box>
         <Label className="fab">Nome do Fabricante</Label>
-        <Input className="fab-input" placeholder="Fabricante" onChange={handleChange}/>
+        <Input className="fab-input" name="nm_fabricante" placeholder="Fabricante" onChange={handleChange}/>
         <Button className="fab-button" onClick={() => inserir()}>Adicionar</Button>
         <Alert className="alerta">ALERT MESSAGE</Alert>
       </Box>

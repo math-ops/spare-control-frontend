@@ -13,12 +13,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-// eslint-disable-next-line
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import axios from 'axios';
 
-const baseURL = 'https://localhost:3333/predio'
+const baseURL = 'http://localhost:3333/predio'
 
 //Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
@@ -36,7 +35,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 100 },
-  { id: 'name', label: 'Área', minWidth: 170 },
+  { id: 'cd_predio', label: 'Cod. Prédio', minWidth: 170 },
   { id: 'nm_predio', label: 'Nome do Prédio', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
   
@@ -46,7 +45,7 @@ const columns = [
 const useStyles = makeStyles({
   root: {
     width: '95%',
-    marginTop: '220px',
+    marginTop: '280px',
     marginLeft: '10px',
     marginRight: '10px',
   },
@@ -99,14 +98,10 @@ export function StickyHeadTable() {
             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <StyledTableCell key={column.id} align={column.align}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </StyledTableCell>
-                    );
-                  })}
+                  <StyledTableCell align="left">{row.id}</StyledTableCell>
+                  <StyledTableCell align="left">{row.cd_predio}</StyledTableCell>
+                  <StyledTableCell align="left">{row.nm_predio}</StyledTableCell>
+                  <StyledTableCell align="left">{moment(row.dt_cadastro).format('L - h:mm A')}</StyledTableCell>
                 </TableRow>
               );
             })}
@@ -127,14 +122,40 @@ export function StickyHeadTable() {
 }
 
 export default function Area(){
+
+  const [setTableData] = useState([]);
+  const [predio, setPredio] = useState({
+    id: '',
+    cd_predio: '',
+    nm_predio: '',    
+  })
+
+  const inserir = async() => {
+    await axios.post(baseURL, predio).then(res => {
+      setTableData((res.data))
+    })
+  }
+
+  const handleChange = e => {
+    const {name, value} = e.target;
+    setPredio(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+    console.log(predio)
+  }
+
   return(
     <>
     <Topbar />
     <Title>Cadastro de Áreas</Title>
       <Box className="area-cad-box">
-        <Label className="area-cad-label">Área</Label>
-        <Input className="area-cad-input" placeholder="Área"/>
-        <Button className="area-cad-button">Adicionar</Button>
+        <Label className="predio-cod-label">Código Prédio</Label>
+        <Input className="predio-cod-input" placeholder="Cod. Prédio" name="cd_predio" onChange={handleChange}/>
+        
+        <Label className="predio-name-label">Nome Prédio</Label>
+        <Input className="predio-name-input" placeholder="Nome Prédio"name="nm_predio" onChange={handleChange}/>
+        <Button className="area-cad-button" onClick={() => inserir()}>Adicionar</Button>
       </Box>
 
       <StickyHeadTable />
