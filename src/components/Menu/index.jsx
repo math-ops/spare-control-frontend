@@ -1,7 +1,8 @@
 import './style.css'
-import { Title, Subtitle, OptionBox, OptionTitle, Button, Strong } from './style'
+import { Title, Subtitle, OptionBox, OptionTitle, Button, Icon } from './style'
+import arrow from '../../styles/assets/arrow.png'
 import { Link } from 'react-router-dom'
-import Footer from '../Common/Footer'
+// import Footer from '../Common/Footer'
 
 export default function Menu(){
   return(
@@ -15,7 +16,7 @@ export default function Menu(){
             <OptionTitle>Cadastrar Fabricante</OptionTitle>
             <Link to="/fabricante">
             <Button href="#">
-            <Strong>SELECT</Strong>  
+              <Icon src={arrow}/> 
             </Button>
             </Link>
         </OptionBox>
@@ -25,7 +26,7 @@ export default function Menu(){
             <OptionTitle>Cadastrar Modelo</OptionTitle>
             <Link to="/modelo">   
             <Button href="#">
-            <Strong>SELECT</Strong>  
+              <Icon src={arrow}/>  
             </Button>
             </Link>
         </OptionBox>
@@ -35,7 +36,7 @@ export default function Menu(){
             <OptionTitle>Cadastrar Equipamento</OptionTitle>
             <Link to="/item">
             <Button href="#">
-            <Strong>SELECT</Strong>  
+              <Icon src={arrow}/>  
             </Button>
             </Link>
         </OptionBox>
@@ -45,7 +46,7 @@ export default function Menu(){
             <OptionTitle>Visualizar Modelos</OptionTitle>
             <Link to="/viewmod">
             <Button href="#">
-            <Strong>SELECT</Strong>  
+              <Icon src={arrow}/>  
             </Button>
             </Link>
         </OptionBox>
@@ -55,7 +56,7 @@ export default function Menu(){
           <OptionTitle>Visualizar Fabricantes</OptionTitle>
           <Link to="/viewfab">
             <Button href="#">
-              <Strong>SELECT</Strong>
+              <Icon src={arrow}/>
             </Button>
           </Link>
         </OptionBox>
@@ -65,17 +66,17 @@ export default function Menu(){
           <OptionTitle>Cadastrar Local</OptionTitle>
           <Link to="/local">
             <Button href="#">
-              <Strong>SELECT</Strong>
+              <Icon src={arrow}/>
             </Button>
           </Link>
         </OptionBox>
 
       {/* Opção 07 */}
       <OptionBox className="fourth">
-        <OptionTitle>Cadastrar Áreas</OptionTitle>
+        <OptionTitle>Cadastrar Prédio</OptionTitle>
         <Link to="/area">
           <Button href="#">
-            <Strong>SELECT</Strong>
+            <Icon src={arrow}/>
           </Button>
         </Link>
       </OptionBox>
@@ -85,7 +86,7 @@ export default function Menu(){
         <OptionTitle>Vizualizar Equipamentos</OptionTitle>
         <Link to="/viewitem">
           <Button href="#">
-            <Strong>SELECT</Strong>
+            <Icon src={arrow}/>
           </Button>
         </Link>
       </OptionBox>

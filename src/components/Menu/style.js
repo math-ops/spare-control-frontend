@@ -62,6 +62,17 @@ export const Button = styled.a`
     border-radius: 25px;
     margin-top: 20px;
     margin-left: 70px;
-    background: #00c95d;
+    background: none;
+
+`;
+
+export const Icon = styled.img`
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border: none;
+  margin-top: 3px;
+  margin-left: 17px;
+  
 
 `;
