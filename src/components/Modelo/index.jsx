@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Title, Box, Label, Input, Button, Alert } from './style'
+import { Title, Box, Label, Input, Button, Footer, Alert } from './style'
 import './style.css'
 import Topbar from '../Common/Header';
 import axios from 'axios'
@@ -41,7 +41,7 @@ export default function Modelo(){
         <Button className="cad-button" onClick={() => inserir()}>Adicionar</Button>
         <Alert className="alerta-model">ALERT MESSAGE</Alert>
       </Box>
-      
+      <Footer>Flex&copy; - All Rights Reserved</Footer>
       
     </>
   )

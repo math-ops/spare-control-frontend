@@ -1,5 +1,5 @@
 import Topbar from '../Common/Header'
-import { Title, Box, Label, Input, Button } from './style'
+import { Title, Box, Label, Input, Button, Footer  } from './style'
 import './style.css'
 
 import React, { useEffect, useState } from 'react';
@@ -45,7 +45,7 @@ const columns = [
 const useStyles = makeStyles({
   root: {
     width: '95%',
-    marginTop: '280px',
+    marginTop: '300px',
     marginLeft: '10px',
     marginRight: '10px',
   },
@@ -148,7 +148,7 @@ export default function Area(){
   return(
     <>
     <Topbar />
-    <Title>Cadastro de Áreas</Title>
+    <Title>Cadastro de Prédios</Title>
       <Box className="area-cad-box">
         <Label className="predio-cod-label">Código Prédio</Label>
         <Input className="predio-cod-input" placeholder="Cod. Prédio" name="cd_predio" onChange={handleChange}/>
@@ -159,6 +159,7 @@ export default function Area(){
       </Box>
 
       <StickyHeadTable />
+      <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }

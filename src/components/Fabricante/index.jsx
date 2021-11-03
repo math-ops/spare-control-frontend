@@ -1,7 +1,6 @@
-import { Title, Box, Label, Input, Button, Alert} from './fabricante'
+import { Title, Box, Label, Input, Button, Footer, Alert} from './fabricante'
 import './style.css'
 import Topbar from '../Common/Header'
-import Footer from '../Common/Footer'
 import axios from 'axios'
 import React, { useState } from 'react'
 
@@ -41,9 +40,7 @@ export default function Fabricante(){
         <Button className="fab-button" onClick={() => inserir()}>Adicionar</Button>
         <Alert className="alerta">ALERT MESSAGE</Alert>
       </Box>
-
-      <Footer />
-      
+      <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }

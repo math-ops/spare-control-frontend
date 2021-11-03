@@ -1,5 +1,5 @@
 import Topbar from '../Common/Header'
-import { Title, Box, Label, Input, Button } from './style'
+import { Title, Box, Label, Input, Footer, Button } from './style'
 import './style.css'
 import axios from 'axios'
 
@@ -164,6 +164,7 @@ export default function ViewLocal(){
       </Box>
 
     <StickyHeadTable />
+    <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }

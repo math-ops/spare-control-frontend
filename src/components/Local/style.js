@@ -12,6 +12,7 @@ export const Title = styled.h1`
 
 export const Box = styled.form`
   position: absolute;
+  top: 17%;
   width: 90%;
   height: 47%;
   border: none;
@@ -81,4 +82,13 @@ width: 50px;
 height: 50px;
 margin-top: -10px;
 margin-left: 5px;
+`;
+
+export const Footer = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  position: absolute;
+  top: 150%;
+  left: 13%;
 `;

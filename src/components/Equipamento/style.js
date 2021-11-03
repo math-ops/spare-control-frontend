@@ -13,7 +13,7 @@ export const Title = styled.h1`
 export const Items = styled.div`
   position: absolute;
   width: 335px;
-  height: 500px;
+  height: 590px;
   background: #eee;
   border-radius: 3px;
   margin-left: 14.5px;
@@ -71,4 +71,13 @@ export const Back = styled.img`
   height: 50px;
   margin-top: -80px;
   margin-left: 5px;
+`;
+
+export const Footer = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  position: absolute;
+  top: 115%;
+  left: 10%;
 `;

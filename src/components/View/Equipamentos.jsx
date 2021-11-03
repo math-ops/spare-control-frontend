@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Topbar from '../Common/Header'
-import { Title } from '../Menu/style'
+import { Title, Footer } from '../Menu/style'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -137,6 +137,7 @@ export default function ViewItem(){
       <Topbar />
       <Title>Equipamentos Cadastrados</Title>
       <StickyHeadTable />
+      <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }

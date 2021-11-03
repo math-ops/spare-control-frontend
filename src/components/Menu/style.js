@@ -76,3 +76,12 @@ export const Icon = styled.img`
   
 
 `;
+
+export const Footer = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  position: absolute;
+  top: 110%;
+  left: 13%;
+`;

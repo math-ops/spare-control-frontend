@@ -84,3 +84,12 @@ height: 50px;
 margin-top: -10px;
 margin-left: 5px;
 `;
+
+export const Footer = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  position: absolute;
+  top: 90%;
+  left: 13%;
+`;
