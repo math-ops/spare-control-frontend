@@ -1,12 +1,11 @@
-import './style.css'
 import { Title, Items, Label, Input, Button, Strong, Footer } from './style'
 import TextField from '@material-ui/core/TextField';
 import Topbar from '../Common/Header'
 import axios from 'axios'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useState, useEffect } from 'react';
+import './style.css'
 const baseURL = 'http://localhost:3333/'
-
 
 export default function Item(){
   const [data, setTableData] = useState([]);
@@ -14,8 +13,8 @@ export default function Item(){
   const [id_fabricante, setIdfabricante] = useState(0);
   const [nm_modelo, setModelo] = useState('');
   const [id_modelo, setIdmodelo] = useState(0);
-  const [cd_equipamento, setEquip] = useState('');
-  const [cd_prefixo, setPrefixo] = useState('');
+  // const [cd_equipamento, setEquip] = useState('');
+  // const [cd_prefixo, setPrefixo] = useState('');
   const [quantidade, setQuantidade] = useState(0);
   // const [nm_local, setLocal] = useState('');
   // const [nm_predio, setPredio] = useState('');
@@ -61,12 +60,12 @@ export default function Item(){
       axios.post(`${baseURL}equipamento`, {
         id_fabricante:id_fabricante,
         id_modelo:id_modelo,
-        cd_prefixo:cd_prefixo
+        // cd_prefixo:cd_prefixo
       }).then((response) => {
 
         const serial = response.data[0].id;
         const label = zpl(serial);
-        console.log(id_fabricante, id_modelo, cd_prefixo)
+        console.log(id_fabricante, id_modelo)
         console.log('log',label);
 
         axios.post(`${baseURL}printer`, {
@@ -82,7 +81,7 @@ export default function Item(){
   return(
     <>
     <Topbar />
-      <Title>Cadastrar Equipamento</Title>
+      <Title>Cadastrar Serial</Title>
       <Items>
       <Autocomplete className="item-id" 
             id="Item"
@@ -91,8 +90,8 @@ export default function Item(){
             onChange={(event, newValue) => {
               setFabricante(newValue?.nm_fabricante);
               setModelo(newValue?.nm_modelo);
-              setEquip(newValue?.cd_equipamento);
-              setPrefixo(newValue?.cd_prefixo);
+              // setEquip(newValue?.cd_equipamento);
+              // setPrefixo(newValue?.cd_prefixo);
               setIdfabricante(newValue?.id_fabricante);
               setIdmodelo(newValue?.id_modelo);
             }}
@@ -111,12 +110,6 @@ export default function Item(){
 
         <Label className="item-mod">MODELO</Label>
         <Input className="item-mod-input"  type="text" name="nm_modelo" value={nm_modelo} disabled onChange={handleChange}/>
-
-        <Label className="item-loc">LOCAL(CD_EQUIPAMENTO)</Label>
-        <Input className="item-loc-input" type="text" name="nm_local" value={cd_equipamento} disabled onChange={handleChange}/>
-
-        <Label className="item-area">AREA(CD_PREFIXO)</Label>
-        <Input className="item-area-input" type="text" name="nm_predio" value={cd_prefixo} disabled onChange={handleChange}/>
 
         <Label className="item-qtd">QUANTIDADE</Label>
         <Input className="item-qtd-input" type="number" onChange={(e) => setQuantidade(Number(e.target.value))} name="id_quantidade" id="id_quantidade" placeholder="Quantidade" />

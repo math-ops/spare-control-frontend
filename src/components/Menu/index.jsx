@@ -33,7 +33,7 @@ export default function Menu(){
         
         {/* Opção 03 */}
         <OptionBox className="rd">          
-            <OptionTitle>Cadastrar Equipamento</OptionTitle>
+            <OptionTitle>Cadastrar Serial</OptionTitle>
             <Link to="/item">
             <Button href="#">
               <Icon src={arrow}/>  
@@ -52,7 +52,7 @@ export default function Menu(){
         </OptionBox>
 
         {/* Opção 05 */}
-        <OptionBox className="view-model">
+        <OptionBox className="view-inserir-equip">
           <OptionTitle>Visualizar Fabricantes</OptionTitle>
           <Link to="/viewfab">
             <Button href="#">
@@ -85,6 +85,16 @@ export default function Menu(){
       <OptionBox className="view-equip">
         <OptionTitle>Vizualizar Equipamentos</OptionTitle>
         <Link to="/viewitem">
+          <Button href="#">
+            <Icon src={arrow}/>
+          </Button>
+        </Link>
+      </OptionBox>
+
+      {/* Opção 09 */}
+      <OptionBox className="view-model">
+        <OptionTitle>Inserir Equipamentos</OptionTitle>
+        <Link to="/insereequip">
           <Button href="#">
             <Icon src={arrow}/>
           </Button>
