@@ -1,4 +1,4 @@
-import Sigin from './components/Login'
+import Login from './components/LoginScreen'
 import Menu from './components/Menu'
 import Equipamento from './components/Equipamento'
 import GlobalStyle from './styles/global'
@@ -20,7 +20,7 @@ function App() {
     <>
       <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={Sigin}/>
+        <Route path="/" exact component={Login}/>
         <Route path="/menu" exact component={Menu} />
         <Route path="/item" exact component={Equipamento} />
         <Route path="/fabricante" exact component={Fabricante} />
