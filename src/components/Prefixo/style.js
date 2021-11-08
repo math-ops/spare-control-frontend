@@ -13,7 +13,7 @@ export const Title = styled.h1`
 export const Items = styled.div`
   position: absolute;
   width: 335px;
-  height: 310px;
+  height: 350px;
   background: #eee;
   border-radius: 3px;
   margin-left: 14.5px;
@@ -25,6 +25,7 @@ export const Label = styled.label`
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   position: absolute;
+  top: -65px;
 `;
 
 export const Input = styled.input`
@@ -34,19 +35,19 @@ export const Input = styled.input`
   height: 40px;
   width: 300px;
   margin-left: 20px;
+  top: -60px;
   border: none;
-  border-radius: 5px;
 `;
 
 export const Button = styled.a`
   position: absolute;
-  width: 130px;
+  width: 100px;
   height: 50px;
   border: none;
   border-radius: 15px;
-  background: #00c95d;
-  top: 240px;
-  margin-left: 100px;
+  background: #00c95d; 
+  margin-top: 270px;
+  margin-left: 110px;
   cursor: pointer;
   &:hover{
     transition: 0.4s ease-out;
@@ -61,7 +62,7 @@ export const Strong = styled.strong`
   font-weight: 600;
   position: absolute;
   margin-top: 15px;
-  margin-left: 30px;
+  margin-left:15px;
   color: #eee;
 
 `;
@@ -79,6 +80,6 @@ export const Footer = styled.h2`
   font-weight: 300;
   color: #fff;
   position: absolute;
-  top: 95%;
-  left: 10%;
+  top: 90%;
+  left: 13%;
 `;

@@ -1,46 +1,51 @@
 @media only screen and (max-width: 769px){
   
-  .first{
+  .op1{
     margin-top: 20px;
     margin-left: 55px;
   }
   
-  .second{
+  .op2{
     margin-top: 180px;
     margin-left: 55px;
   }
   
-  .rd{
+  .op3{
     margin-top: 340px;
     margin-left: 55px;
   }
   
-  .menu-local{
+  .op4{
     margin-top: 500px;
     margin-left: 55px;
   }
-  .fourth{
+  .op5{
     margin-top: 660px;
     margin-left: 55px;
   }
 
-  .view-model{
+  .op6{
     margin-top: 820px;
     margin-left: 55px;
   }
 
-  .view-local {
+  .op7{
     margin-top: 980px;
     margin-left: 55px;
   }
 
-  .view-equip {
+  .op8 {
     margin-top: 1140px;
     margin-left: 55px;
   }
 
-  .view-inserir-equip{
+  .op9 {
     margin-top: 1300px;
+    margin-left: 55px;
+  }
+
+  .op10{
+    margin-top: 1460px;
     margin-left: 55px;
   }
 

@@ -1,61 +1,122 @@
 
 import './style.css'
-import { Title, Items, Label, Input, Button, Strong, Footer } from './style'
-// import TextField from '@material-ui/core/TextField';
+import { Title, Items, Strong, Button } from './style'
+import TextField from '@material-ui/core/TextField';
 import Topbar from '../Common/Header'
-// import Footer from '../Common/Footer'
-import axios from 'axios'
-import { useState } from 'react';
+import Footer from '../Common/Footer'
+import axios from '../../services/api'
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { useState, useEffect } from 'react';
+// eslint-disable-next-line
 const baseURL = 'http://localhost:3333/equipamento'
 
 
 export default function Item(){
-  // eslint-disable-next-line
-  const [data, setTableData] = useState([]);
-  const [equipamento, setEquipamento]= useState({
-    id_fabricante: '',
-    id_modelo: '',
-    cd_equipamento: ''
-  });
+  // const [data, setTableData] = useState([]);
+  const [fabricante, setFabricante] = useState([]);
+  const [id_fabricante, setIdfabricante] = useState(0);
+  const [modelo, setModelo] = useState([]);
+  const [id_modelo, setIdmodelo] = useState(0);
+  const [prefixo, setPrefixo] = useState([]);
+  const [cd_prefixo, setCdprefixo] = useState(0);
+
+  useEffect(()=>{
+
+      const ress = async () => {
+
+        const [
+          req_fabricante,
+          req_modelo,
+          req_prefixo
+        ] = await Promise.all([
+          axios.get("fabricante"),
+          axios.get("modelo"),
+          axios.get("prefixo"),
+
+        ]);
+        setFabricante(req_fabricante.data);
+        setModelo(req_modelo.data);
+        setPrefixo(req_prefixo.data);
+        console.log(req_fabricante.data);
+        console.log(req_modelo.data);
+        console.log(req_prefixo.data);
+      }
+      ress();
+  },[]);
   
+  async function  handleSubmit(){
+
+  console.log('clicou!!!');
+
+  try {
+  const res =  await axios.post('equipamento',{
+      id_fabricante: id_fabricante,
+      id_modelo: id_modelo,
+      cd_prefixo:cd_prefixo
+    });
+  console.log(res.data); 
   
-  const inserir = async() => {
-    await axios.post(baseURL, equipamento)
-    .then(res => {
-      setTableData((res.data))
-      console.log(res.error)
-    })
+  } catch (error) {
+    console.log('Fail',error);
   }
 
-  const handleChange = e => {
-    const {name, value} = e.target;
-    setEquipamento(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-    console.log(equipamento)
-  }
+ }
 
-  
   return(
     <>
     <Topbar />
       <Title>Cadastrar Equipamento</Title>
-      <Items>
-        <Label className="item-manf">FABRICANTE</Label>
-        <Input  className="item-manf-input" type="text" placeholder="Fabricante" name="id_fabricante" onChange={handleChange}/>
 
-        <Label className="item-mod">MODELO</Label>
-        <Input className="item-mod-input"  type="text" placeholder="Modelo" name="id_modelo" onChange={handleChange}/>
+<Items>
+      <form onSubmit={(e)=>handleSubmit(e.preventDefault())}>
+      <Autocomplete className="item-id" 
+            id="Item"
+            options={fabricante}
+            getOptionLabel={(option) => option.id + " - "+ option.nm_fabricante }
+            onChange={(event, newValue) => {
+              setIdfabricante(newValue?.id);
+            }}
+            onSelect={() => {
+            }
+            }
+            style={{ width: 275 }}
+            renderInput={(params) => <TextField {...params} label="FABRICANTE..." variant="standard"/>}
+          />
+       
+       <Autocomplete className="item-id" 
+            id="Item"
+            options={modelo}
+            getOptionLabel={(option) => option.id + " - "+ option.nm_modelo }
+            onChange={(event, newValue) => {
+              setIdmodelo(newValue?.id);
+            }}
+            onSelect={() => {
+            }
+            }
+            style={{ width: 275 }}
+            renderInput={(params) => <TextField {...params} label="MODELO..." variant="standard"/>}
+          />
 
-        <Label className="item-loc">PREFIXO</Label>
-        <Input className="item-loc-input" type="text" placeholder="Codigo do Prefixo" name="cd_prefixo" onChange={handleChange}/>
+         <Autocomplete className="item-id" 
+            id="Item"
+            options={prefixo}
+            getOptionLabel={(option) => option.id + " - "+ option.cd_prefixo }
+            onChange={(event, newValue) => {
+              setCdprefixo(newValue?.cd_prefixo);
+            }}
+            onSelect={() => {
+            }
+            }
+            style={{ width: 275 }}
+            renderInput={(params) => <TextField {...params} label="PREFIXO..." variant="standard"/>}
+          />
 
         <Button >
-          <Strong className="fab-button" onClick={() => inserir()}>Adicionar</Strong>
+          <Strong className="fab-button" >Adicionar</Strong>
         </Button>
-        </Items>
-        <Footer>Flex&copy; - All Rights Reserved</Footer>
+        </form>
+</Items>
+      <Footer />
     </>
   )
 }

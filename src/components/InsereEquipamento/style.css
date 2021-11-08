@@ -2,59 +2,39 @@
   .item-id{
     margin-top: 20px;
     margin-left: 20px;
-  }
-
-  .item-id-input{
-    margin-top: 43px;
-    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
   }
 
   .item-manf{
-    margin-top: 90px;
+    top: 0px;
     margin-left: 20px;
   }
 
   .item-manf-input{
-    margin-top: 110px;
+    top: 5px;
     padding: 10px;
+    background-color: #fff;
   }
 
   .item-mod{
-    margin-top: 160px;
+    top: 7px;
     margin-left: 20px;
   }
 
   .item-mod-input{
-    margin-top: 180px;
+    top: 12px;
     padding: 10px;
-  }
-
-  .item-loc{
-    margin-top: 230px;
-    margin-left: 20px;
-  }
-
-  .item-loc-input{
-    margin-top: 250px;
-    padding: 10px;
-  }
-
-  .item-area{
-    margin-top: 300px;
-    margin-left: 20px;
-  }
-
-  .item-area-input{
-    margin-top: 320px;
-    padding: 10px;
+    background-color: #fff;
   }
 
   .item-qtd {
-    margin-top: 370px;
+    top: -120px;
     margin-left: 20px;
   }
 
   .item-qtd-input{
-    margin-top: 390px; 
+    top: -120px; 
     padding: 10px;
+    background-color: #fff;
   }

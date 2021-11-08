@@ -12,6 +12,7 @@ import ViewModelo from './components/View/Modelo'
 import ViewItem from './components/View/Equipamentos'
 import LogoutModal from './components/Common/Alerts/LogoutModal'
 import CadastroModal from './components/Common/Alerts/CadastoModal'
+import CadastroPrefixo from './components/Prefixo'
 import Area from './components/Predio'
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/viewitem" exact component={ViewItem} />
         <Route path="/logout" exact component={LogoutModal} />
         <Route path="/sucesso" exact component={CadastroModal} />
+        <Route path="/cadprefixo" exact component={CadastroPrefixo} />
 
         
       </Switch>
