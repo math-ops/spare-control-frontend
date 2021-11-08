@@ -35,17 +35,18 @@ export const Input = styled.input`
   width: 300px;
   margin-left: 20px;
   border: none;
+  border-radius: 5px;
 `;
 
 export const Button = styled.a`
   position: absolute;
-  width: 100px;
+  width: 130px;
   height: 50px;
   border: none;
   border-radius: 15px;
-  background: #00c95d; 
-  margin-top: 445px;
-  margin-left: 120px;
+  background: #00c95d;
+  top: 330px;
+  margin-left: 100px;
   cursor: pointer;
   &:hover{
     transition: 0.4s ease-out;
@@ -60,7 +61,7 @@ export const Strong = styled.strong`
   font-weight: 600;
   position: absolute;
   margin-top: 15px;
-  margin-left:15px;
+  margin-left: 30px;
   color: #eee;
 
 `;
@@ -78,6 +79,6 @@ export const Footer = styled.h2`
   font-weight: 300;
   color: #fff;
   position: absolute;
-  top: 115%;
+  top: 95%;
   left: 10%;
 `;

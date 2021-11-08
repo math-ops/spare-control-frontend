@@ -41,7 +41,7 @@ export default function Fabricante(){
         <Alert className="alerta">ALERT MESSAGE</Alert>
       </Box>
       <Footer>Flex&copy; - All Rights Reserved</Footer>
-    </>
+      </>
   )
 }
 

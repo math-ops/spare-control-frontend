@@ -1,6 +1,6 @@
 
 import './style.css'
-import { Title, Items, Label, Input, Button, Strong } from './style'
+import { Title, Items, Label, Input, Button, Strong, Footer } from './style'
 // import TextField from '@material-ui/core/TextField';
 import Topbar from '../Common/Header'
 // import Footer from '../Common/Footer'
@@ -10,6 +10,7 @@ const baseURL = 'http://localhost:3333/equipamento'
 
 
 export default function Item(){
+  // eslint-disable-next-line
   const [data, setTableData] = useState([]);
   const [equipamento, setEquipamento]= useState({
     id_fabricante: '',
@@ -54,6 +55,7 @@ export default function Item(){
           <Strong className="fab-button" onClick={() => inserir()}>Adicionar</Strong>
         </Button>
         </Items>
+        <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }

@@ -74,3 +74,12 @@ export const Back = styled.img`
   margin-top: -80px;
   margin-left: 5px;
 `;
+
+export const Footer = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  position: absolute;
+  top: 90%;
+  left: 13%;
+`;
