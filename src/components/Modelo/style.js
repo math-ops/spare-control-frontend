@@ -13,7 +13,7 @@ export const Title = styled.h1`
 export const Box = styled.form`
   position: absolute;
   width: 90%;
-  height: 40%;
+  height: 30%;
   margin-top: 40px;
   margin-left: 20px;
   border: none;
@@ -49,32 +49,20 @@ export const Box = styled.form`
  `;
 
  export const Button = styled.button`
-  font-family: 'Popins', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
   position: absolute;
+  width: 130px;
+  height: 50px;
   border: none;
-  outline: none;
-  background: none;
-  background-color: #1fe038;
-  padding: 15px;
-  width: 150px;
-  border-radius: 3px;
-
+  border-radius: 15px;
+  background: #00c95d;
+  top: 20px;
+  margin-left: 100px;
+  cursor: pointer;
   &:hover{
-    background: none;
-    background-color: #a6ffb1;
-    color: #333;
     transition: 0.4s ease-out;
+    background: #009a00;
+    color: #fff;
   }
- `;
-
- export const Alert = styled.h2`
-  font-family: 'Popins', sans-serif;
-  font-weight: 700;
-  position: absolute;
-  color: green;
-  text-align: center;
  `;
 
 export const Back = styled.img`

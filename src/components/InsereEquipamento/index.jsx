@@ -1,11 +1,13 @@
 
 import './style.css'
-import { Title, Items, Strong, Button } from './style'
+import { Title, Items, Strong, Button, Footer } from './style'
 import TextField from '@material-ui/core/TextField';
 import Topbar from '../Common/Header'
-import Footer from '../Common/Footer'
 import axios from '../../services/api'
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import * as React from 'react'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
 import { useState, useEffect } from 'react';
 // eslint-disable-next-line
 const baseURL = 'http://localhost:3333/equipamento'
@@ -60,15 +62,34 @@ export default function Item(){
     console.log('Fail',error);
   }
 
+   //para da reload na pagina ao inserir
+   setTimeout(() => {  window.location.reload(); }, 6000); 
+  
  }
+
+ const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props}/>;
+})
+
+const [open, setOpen] = React.useState(false);
+
+const handleOpen = () => {
+  setOpen(true)
+}
+
+const handleClose = (event, reason) => {
+  if (reason === 'clickaway') {
+    return;
+  }
+  setOpen(false);
+}
 
   return(
     <>
     <Topbar />
       <Title>Cadastrar Equipamento</Title>
 
-<Items>
-      <form onSubmit={(e)=>handleSubmit(e.preventDefault())}>
+<Items onSubmit={(e)=>handleSubmit(e.preventDefault())}>
       <Autocomplete className="item-id" 
             id="Item"
             options={fabricante}
@@ -111,12 +132,16 @@ export default function Item(){
             renderInput={(params) => <TextField {...params} label="PREFIXO..." variant="standard"/>}
           />
 
-        <Button >
-          <Strong className="fab-button" >Adicionar</Strong>
+        <Button>
+          <Strong className="fab-button" onClick={handleOpen} >Adicionar</Strong>
         </Button>
-        </form>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+         Cadastrado com Sucesso!
+        </Alert>
+      </Snackbar>
 </Items>
-      <Footer />
+      <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }

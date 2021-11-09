@@ -4,7 +4,10 @@ import { Title, Items, Label, Input, Button, Strong, Footer } from './style'
 // import TextField from '@material-ui/core/TextField';
 import Topbar from '../Common/Header'
 import axios from 'axios'
-import { useState } from 'react';
+import * as React from 'react'
+import { useState } from 'react'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
 const baseURL = 'http://localhost:3333/equipamento'
 
 
@@ -35,6 +38,23 @@ export default function Prefixo(){
     console.log(equipamento)
   }
 
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props}/>;
+  })
+
+  const [open, setOpen] = React.useState(false);
+  
+  const handleClick = () => {
+    setOpen(true)
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  }
+
   
   return(
     <>
@@ -51,8 +71,13 @@ export default function Prefixo(){
         <Input className="item-loc-input" type="number" placeholder="Codigo do Prefixo" name="qtd_final" onChange={handleChange}/>
 
         <Button >
-          <Strong className="fab-button" onClick={() => inserir()}>Adicionar</Strong>
+          <Strong className="fab-button" onClick={() => inserir() && handleClick()}>Adicionar</Strong>
         </Button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+         Cadastrado com Sucesso!
+        </Alert>
+      </Snackbar>
         </Items>
         <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>

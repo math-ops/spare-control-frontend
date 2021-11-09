@@ -10,13 +10,13 @@ export const Title = styled.h1`
 
 `;
 
-export const Items = styled.div`
+export const Items = styled.form`
   position: absolute;
   width: 335px;
   height: 310px;
   background: #eee;
   border-radius: 3px;
-  margin-left: 14.5px;
+  margin-left: 20px;
   box-shadow: 0 0 15px #001b94;
   
 `;
@@ -38,7 +38,7 @@ export const Input = styled.input`
   border-radius: 5px;
 `;
 
-export const Button = styled.a`
+export const Button = styled.button`
   position: absolute;
   width: 130px;
   height: 50px;
@@ -57,11 +57,12 @@ export const Button = styled.a`
 
 export const Strong = styled.strong`
   text-align: center;
+  font-size: 18px;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   position: absolute;
-  margin-top: 15px;
-  margin-left: 30px;
+  margin-top: -10px;
+  margin-left: -35px;
   color: #eee;
 
 `;
