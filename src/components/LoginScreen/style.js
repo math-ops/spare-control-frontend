@@ -9,10 +9,18 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
-
-import img from '../../styles/img/white.png'
-
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios'
+import img from '../../styles/img/blue.png'
 import styled from "styled-components";
+
+const baseURL = 'http://localhost:3333/'
+
+export const Background = styled.div`
+  background: #eee;
+  height: 100vh;
+`;
 
 export const Logo = styled.img`
   position: absolute;
@@ -22,8 +30,7 @@ export const Logo = styled.img`
   left: 25%;
 `;
 
-
-export const Card = styled.div`
+export const Card = styled.form`
   position: absolute;
   height: 200px;
   width: 325px;
@@ -40,17 +47,42 @@ export const Title = styled.h2`
 `;
 
 export function InputWithIcon() {
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const history = useHistory();
+  
+  const handleUser = e => {
+    const usuario = e.target.value;
+    setUser(usuario);
+  }
+
+  const handlePassword = e => {
+    const senha = e.target.value;
+    setPassword(senha);
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    try{
+      console.log(user,password);
+      axios.post(`${baseURL}authenticate`, {
+      userText:user,
+      passwordText:password,
+    }).then((response) => {
+      console.log('passou aqui')
+      history.push('/menu');
+    })
+    }
+    catch(error){
+
+    }  
+  }
+
   const [values, setValues] = React.useState({
-    amount: '',
     password: '',
-    weight: '',
-    weightRange: '',
     showPassword: false,
   });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
 
   const handleClickShowPassword = () => {
     setValues({
@@ -65,26 +97,19 @@ export function InputWithIcon() {
 
   return (
     <>
+    <Background>
     <Logo src={img}/>
-    <Card>
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '310px' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField id="outlined-basic" label="Username" variant="outlined" />
-    </Box>
-      
+    <Card onSubmit={handleSubmit}>
+    <Box component="form" sx={{'& > :not(style)': { m: 1, width: '310px' },}} noValidate autoComplete="off">
+      <TextField id="outlined-basic" label="Username" variant="outlined" value={user} onChange={handleUser} />
+    </Box>      
       <FormControl sx={{ m: 1, width: '310px' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password" >Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
+            value={password}
+            onChange={handlePassword}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -100,20 +125,11 @@ export function InputWithIcon() {
             label="Password"
           />
         </FormControl>
-
-        <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '310px' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      
-      <Button sx={{m: 1, widht: '300px'}} variant="contained">Login</Button>
-    </Box>
-    
+        <Box component="form" sx={{'& > :not(style)': { m: 1, width: '310px' },}} noValidate autoComplete="off">    
+           <Button sx={{m: 1, widht: '300px'}} variant="contained">Login</Button>
+        </Box>
     </Card>
+    </Background>
         </>
   );
 }

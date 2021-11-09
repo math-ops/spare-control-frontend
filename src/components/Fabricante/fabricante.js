@@ -13,7 +13,7 @@ export const Title = styled.h1`
 export const Box = styled.form`
   position: absolute;
   width: 90%;
-  height: 40%;
+  height: 30%;
   margin-top: 40px;
   margin-left: 20px;
   border: none;
@@ -56,25 +56,17 @@ export const Box = styled.form`
   border: none;
   outline: none;
   background: none;
-  background-color: #1fe038;
+  background-color: #00b818;
   padding: 15px;
   width: 150px;
   border-radius: 3px;
 
   &:hover{
     background: none;
-    background-color: #a6ffb1;
-    color: #333;
+    background-color: #00700f;
+    color: #fff;
     transition: 0.4s ease-out;
   }
- `;
-
- export const Alert = styled.h2`
-  font-family: 'Popins', sans-serif;
-  font-weight: 700;
-  position: absolute;
-  color: green;
-  text-align: center;
  `;
 
 export const Back = styled.img`
