@@ -14,7 +14,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
@@ -25,7 +26,7 @@ const StyledTableCell = withStyles((theme) => ({
     backgroundColor: '#001b94',
     color: theme.palette.common.white,
     fontSize: 20,
-      fontWeight: 'bold',
+    fontWeight: 'bold',
   },
   body: {
     fontSize: 16,
@@ -38,7 +39,7 @@ const columns = [
   { id: 'nm_local', label: 'Local', minWidth: 170 },
   { id: 'nm_predio', label: 'Nome Predio', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
-  
+
 ];
 
 const useStyles = makeStyles({
@@ -67,9 +68,7 @@ export function StickyHeadTable() {
         setTableData(res.data);
       })
   }, []);
-
-
-
+  
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -123,24 +122,36 @@ export function StickyHeadTable() {
   );
 }
 
-export default function ViewLocal(){
+export default function ViewLocal() {
 
-  const [setTableData] = useState([]);
+  const [isSucess, setIsSucess] = useState(true);
   const [local, setLocal] = useState({
     id: '',
     cd_local: '',
     nm_local: '',
-    id_predio: '', 
+    id_predio: '',
   })
 
-  const inserir = async() => {
-    await axios.post(baseURL, local).then(res => {
-      setTableData((res.data))
-    })
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(baseURL, local);
+      if (!!res.data) {
+        setIsSucess(true);
+      } else {
+        setIsSucess(false);
+      }
+    } catch {
+      setIsSucess(false);
+      console.log('error catch');
+    } finally {
+      handleClick();
+    }
   }
 
   const handleChange = e => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setLocal(prevState => ({
       ...prevState,
       [name]: value
@@ -148,10 +159,27 @@ export default function ViewLocal(){
     console.log(local)
   }
 
-  return(
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  })
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true)
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  }
+
+  return (
     <>
 
-<Topbar />
+      <Topbar />
       <Title>Cadastrar Locais</Title>
       <Box className="local-box">
         <Label className="local-cod-label" >Código Local</Label>
@@ -159,12 +187,25 @@ export default function ViewLocal(){
         <Label className="local-name-label" >Nome Local</Label>
         <Input className="local-name-input" name="nm_local" placeholder="Nome Local" onChange={handleChange} />
         <Label className="local-predio-label">ID Prédio</Label>
-        <Input className="local-predio-input" name="id_predio" placeholder="ID Prédio" onChange={handleChange}/>
-        <Button className="local-cad-button" onClick={() => inserir()}>Adicionar</Button>
+        <Input className="local-predio-input" name="id_predio" placeholder="ID Prédio" onChange={handleChange} />
+        <Button className="local-cad-button" onClick={handleSubmit}>Adicionar</Button>
+        {isSucess ?
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Cadastrado com Sucesso!
+            </Alert>
+          </Snackbar>
+          :
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              Não Foi Possivel Fazer o Cadastro!
+            </Alert>
+          </Snackbar>
+        }
       </Box>
 
-    <StickyHeadTable />
-    <Footer>Flex&copy; - All Rights Reserved</Footer>
+      <StickyHeadTable />
+      <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }

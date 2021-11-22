@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Topbar from '../Common/Header'
-
+import styled from 'styled-components'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -10,13 +10,22 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { Title, Footer } from '../Menu/style'
+import { Title } from '../Menu/style'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
 import axios from 'axios'
 
 const baseURL = 'http://localhost:3333/modelo'
+
+export const Footer = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  position: absolute;
+  top: 105%;
+  left: 10%;
+`;
 
 //Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
@@ -120,7 +129,7 @@ export default function ViewModelo(){
   return(
     <>
       <Topbar />
-      <Title>Lista de Modelos Cadastrados</Title>
+      <Title>Modelos Cadastrados</Title>
       <StickyHeadTable />
       <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>

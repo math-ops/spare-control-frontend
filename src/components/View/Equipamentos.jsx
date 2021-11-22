@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Topbar from '../Common/Header'
-import { Title, Footer } from '../Menu/style'
+import { Title } from '../Menu/style'
+import styled from 'styled-components'
 
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -18,6 +19,14 @@ import axios from 'axios'
 
 const baseURL = 'http://localhost:3333/equipamento'
 
+export const Footer = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  position: absolute;
+  top: 105%;
+  left: 10%;
+`;
 
 //Estilização das Células
 const StyledTableCell = withStyles((theme) => ({

@@ -1,8 +1,9 @@
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './components/LoginScreen'
 import Menu from './components/Menu'
-import Equipamento from './components/Equipamento'
+import LogoutModal from './components/Common/Alerts/LogoutModal'
+import Equipamento from './components/Serial'
 import GlobalStyle from './styles/global'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Fabricante from './components/Fabricante'
 import Modelo from './components/Modelo'
 import Local from './components/Local'
@@ -10,37 +11,32 @@ import ViewFabricante from './components/View/Fabricante'
 import Item from './components/InsereEquipamento'
 import ViewModelo from './components/View/Modelo'
 import ViewItem from './components/View/Equipamentos'
-import LogoutModal from './components/Common/Alerts/LogoutModal'
-import CadastroModal from './components/Common/Alerts/CadastoModal'
 import CadastroPrefixo from './components/Prefixo'
-import Area from './components/Predio'
+import Predio from './components/Predio'
 
 function App() {
   return (
     <>
       <BrowserRouter>
       <Switch>
+        {/* ROTAS COMUNS */}
         <Route path="/" exact component={Login}/>
         <Route path="/menu" exact component={Menu} />
-        <Route path="/item" exact component={Equipamento} />
-        <Route path="/fabricante" exact component={Fabricante} />
-        <Route path="/modelo" exact component={Modelo} />
-        <Route path="/local" exact component={Local} />
-        <Route path="/area" exact component={Area} />
-        <Route path="/viewfab" exact component={ViewFabricante} />
-        <Route path="/insereequip" exact component={Item} />
-        <Route path="/viewmod" exact component={ViewModelo} />
-        <Route path="/viewitem" exact component={ViewItem} />
         <Route path="/logout" exact component={LogoutModal} />
-        <Route path="/sucesso" exact component={CadastroModal} />
-        <Route path="/cadprefixo" exact component={CadastroPrefixo} />
-
-        
-      </Switch>
-      
-      
+        {/* ROTAS DE CADASTRO */}
+        <Route path="/csrl" exact component={Equipamento} />
+        <Route path="/cfab" exact component={Fabricante} />
+        <Route path="/cmod" exact component={Modelo} />
+        <Route path="/cloc" exact component={Local} />
+        <Route path="/cprd" exact component={Predio} />
+        <Route path="/ceqp" exact component={Item} />
+        <Route path="/cpfx" exact component={CadastroPrefixo} />
+          {/* ROTAS DE VISUALIZAÇÃO */}
+        <Route path="/vfab" exact component={ViewFabricante} />
+        <Route path="/vmod" exact component={ViewModelo} />
+        <Route path="/veqp" exact component={ViewItem} />        
+      </Switch>    
       </BrowserRouter>
-
       <GlobalStyle />
     </>
     )

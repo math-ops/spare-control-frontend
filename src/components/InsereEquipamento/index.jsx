@@ -124,7 +124,7 @@ export default function Item() {
           }
           }
           style={{ width: 275 }}
-          renderInput={(params) => <TextField {...params} label="FABRICANTE..." variant="standard" required/>}
+          renderInput={(params) => <TextField {...params} label="FABRICANTE..." variant="standard"/>}
         />
 
         <Autocomplete className="item-id"
@@ -138,7 +138,7 @@ export default function Item() {
           }
           }
           style={{ width: 275 }}
-          renderInput={(params) => <TextField {...params} label="MODELO..." variant="standard" required />}
+          renderInput={(params) => <TextField {...params} label="MODELO..." variant="standard"  />}
         />
 
         <Autocomplete className="item-id"
@@ -152,7 +152,7 @@ export default function Item() {
           }
           }
           style={{ width: 275 }}
-          renderInput={(params) => <TextField {...params} label="PREFIXO..." variant="standard" required/>}
+          renderInput={(params) => <TextField {...params} label="PREFIXO..." variant="standard" />}
         />
 
         <Button>

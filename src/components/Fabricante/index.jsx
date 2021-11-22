@@ -1,4 +1,4 @@
-import { Title, Box, Label, Input, Button, Footer} from './fabricante'
+import { Title, Box, Label, Input, Button, Footer } from './fabricante'
 import './style.css'
 import Topbar from '../Common/Header'
 import axios from 'axios'
@@ -9,23 +9,34 @@ import MuiAlert from '@mui/material/Alert'
 
 const baseURL = 'http://localhost:3333/fabricante'
 
-export default function Fabricante(){
-  const [setTableData] = useState([]);
+export default function Fabricante() {
+  const [isSucess, setIsSucess] = useState(true);
   const [fabricante, setFabricante] = useState({
-    id:'',
+    id: '',
     nm_fabricante: '',
 
   })
 
-  const inserir = async() => {
-    await axios.post(baseURL, fabricante)
-    .then(res => {
-      setTableData((res.data))
-    })
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(baseURL, fabricante);
+      if (!!res.data) {
+        setIsSucess(true);
+      } else {
+        setIsSucess(false);
+      }
+    } catch {
+      setIsSucess(false);
+      console.log('error catch');
+    } finally {
+      handleClick();
+    }
   }
 
   const handleChange = e => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setFabricante(prevState => ({
       ...prevState,
       [name]: value
@@ -34,11 +45,11 @@ export default function Fabricante(){
   }
 
   const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props}/>;
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   })
 
   const [open, setOpen] = React.useState(false);
-  
+
   const handleClick = () => {
     setOpen(true)
   }
@@ -49,24 +60,32 @@ export default function Fabricante(){
     }
     setOpen(false);
   }
-  
 
-  return(
+
+  return (
     <>
-    <Topbar />
-      <Title>Adicionar Fabricante</Title>
+      <Topbar />
+      <Title>Cadastrar Fabricante</Title>
       <Box>
         <Label className="fab">Nome do Fabricante</Label>
-        <Input className="fab-input" name="nm_fabricante" placeholder="Fabricante" onChange={handleChange}/>
-        <Button className="fab-button" onClick={() => inserir() && handleClick()}>Adicionar</Button>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-         Cadastrado com Sucesso!
-        </Alert>
-      </Snackbar>
+        <Input className="fab-input" name="nm_fabricante" placeholder="Fabricante" onChange={handleChange} />
+        <Button className="fab-button" onClick={handleSubmit}>Adicionar</Button>
+        {isSucess ?
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Cadastrado com Sucesso!
+            </Alert>
+          </Snackbar>
+          :
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              Fabricante Invalido ou Já Existe!
+            </Alert>
+          </Snackbar>
+        }
       </Box>
       <Footer>Flex&copy; - All Rights Reserved</Footer>
-      </>
+    </>
   )
 }
 

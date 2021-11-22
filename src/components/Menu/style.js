@@ -82,6 +82,6 @@ export const Footer = styled.h2`
   font-weight: 300;
   color: #fff;
   position: absolute;
-  top: 110%;
+  top: 250%;
   left: 13%;
 `;

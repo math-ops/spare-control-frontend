@@ -8,34 +8,44 @@ import * as React from 'react'
 import { useState } from 'react'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
-const baseURL = 'http://localhost:3333/equipamento'
+const baseURL = 'http://localhost:3333/prefixo'
 
 
 export default function Prefixo(){
   // eslint-disable-next-line
   const [data, setTableData] = useState([]);
-  const [equipamento, setEquipamento]= useState({
+  const [isSucess, setIsSucess] = useState(true);
+  const [prefixo, setPrefixo]= useState({   
     cd_prefixo: '',
     qtd_inicial: '',
     qtd_final: ''
   });
-  
-  
-  const inserir = async() => {
-    await axios.post(baseURL, equipamento)
-    .then(res => {
-      setTableData((res.data))
-      console.log(res.error)
-    })
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(baseURL, prefixo);
+      if (!!res.data) {
+        setIsSucess(true);
+      } else {
+        setIsSucess(false);
+      }
+    } catch {
+      setIsSucess(false);
+      console.log('error catch');
+    } finally {
+      handleClick();
+    }
   }
 
   const handleChange = e => {
     const {name, value} = e.target;
-    setEquipamento(prevState => ({
+    setPrefixo(prevState => ({
       ...prevState,
       [name]: value
     }))
-    console.log(equipamento)
+    console.log(prefixo)
   }
 
   const Alert = React.forwardRef(function Alert(props, ref) {
@@ -62,22 +72,30 @@ export default function Prefixo(){
       <Title>Cadastrar Prefixo</Title>
       <Items>
         <Label className="item-manf">CD_PREFIXO</Label>
-        <Input  className="item-manf-input" type="text" placeholder="Fabricante" name="cd_prefixo" onChange={handleChange}/>
+        <Input  className="item-manf-input" type="text" placeholder="Cod Prefixo" name="cd_prefixo" onChange={handleChange}/>
 
         <Label className="item-mod">QTD_INICIAL</Label>
-        <Input className="item-mod-input"  type="number" placeholder="Modelo" name="qtd_inicial" onChange={handleChange}/>
+        <Input className="item-mod-input"  type="number" placeholder="Quantidade inicial" name="qtd_inicial" onChange={handleChange}/>
 
         <Label className="item-loc">QTD_FINAL</Label>
-        <Input className="item-loc-input" type="number" placeholder="Codigo do Prefixo" name="qtd_final" onChange={handleChange}/>
+        <Input className="item-loc-input" type="number" placeholder="Quantidade final" name="qtd_final" onChange={handleChange}/>
 
         <Button >
-          <Strong className="fab-button" onClick={() => inserir() && handleClick()}>Adicionar</Strong>
+          <Strong className="fab-button" onClick={handleSubmit}>Adicionar</Strong>
         </Button>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-         Cadastrado com Sucesso!
-        </Alert>
-      </Snackbar>
+        {isSucess ?
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Cadastrado com Sucesso!
+            </Alert>
+          </Snackbar>
+          :
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              Não Foi Possivel Fazer o Cadastro!
+            </Alert>
+          </Snackbar>
+        }
         </Items>
         <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>

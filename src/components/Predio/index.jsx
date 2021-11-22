@@ -1,5 +1,5 @@
 import Topbar from '../Common/Header'
-import { Title, Box, Label, Input, Button, Footer  } from './style'
+import { Title, Box, Label, Input, Button, Footer } from './style'
 import './style.css'
 
 import React, { useEffect, useState } from 'react';
@@ -13,6 +13,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import axios from 'axios';
@@ -25,7 +27,7 @@ const StyledTableCell = withStyles((theme) => ({
     backgroundColor: '#001b94',
     color: theme.palette.common.white,
     fontSize: 20,
-      fontWeight: 'bold',
+    fontWeight: 'bold',
   },
   body: {
     fontSize: 16,
@@ -38,7 +40,7 @@ const columns = [
   { id: 'cd_predio', label: 'Cod. Prédio', minWidth: 170 },
   { id: 'nm_predio', label: 'Nome do Prédio', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
-  
+
 ];
 
 
@@ -121,23 +123,35 @@ export function StickyHeadTable() {
   );
 }
 
-export default function Area(){
+export default function Area() {
 
-  const [setTableData] = useState([]);
+  const [isSucess, setIsSucess] = useState(true);
   const [predio, setPredio] = useState({
     id: '',
     cd_predio: '',
-    nm_predio: '',    
+    nm_predio: '',
   })
 
-  const inserir = async() => {
-    await axios.post(baseURL, predio).then(res => {
-      setTableData((res.data))
-    })
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(baseURL, predio);
+      if (!!res.data) {
+        setIsSucess(true);
+      } else {
+        setIsSucess(false);
+      }
+    } catch {
+      setIsSucess(false);
+      console.log('error catch');
+    } finally {
+      handleClick();
+    }
   }
 
   const handleChange = e => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setPredio(prevState => ({
       ...prevState,
       [name]: value
@@ -145,17 +159,47 @@ export default function Area(){
     console.log(predio)
   }
 
-  return(
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  })
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true)
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  }
+
+  return (
     <>
-    <Topbar />
-    <Title>Cadastro de Prédios</Title>
+      <Topbar />
+      <Title>Cadastro de Prédios</Title>
       <Box className="area-cad-box">
         <Label className="predio-cod-label">Código Prédio</Label>
-        <Input className="predio-cod-input" placeholder="Cod. Prédio" name="cd_predio" onChange={handleChange}/>
-        
+        <Input className="predio-cod-input" placeholder="Cod. Prédio" name="cd_predio" onChange={handleChange} />
+
         <Label className="predio-name-label">Nome Prédio</Label>
-        <Input className="predio-name-input" placeholder="Nome Prédio"name="nm_predio" onChange={handleChange}/>
-        <Button className="area-cad-button" onClick={() => inserir()}>Adicionar</Button>
+        <Input className="predio-name-input" placeholder="Nome Prédio" name="nm_predio" onChange={handleChange} />
+        <Button className="area-cad-button" onClick={handleSubmit}>Adicionar</Button>
+        {isSucess ?
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Cadastrado com Sucesso!
+            </Alert>
+          </Snackbar>
+          :
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              Não Foi Possivel Fazer o Cadastro!
+            </Alert>
+          </Snackbar>
+        }
       </Box>
 
       <StickyHeadTable />
