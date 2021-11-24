@@ -19,9 +19,7 @@ export default function Topbar(){
             <Svg src={logout}/>
           </Logout>
         </Link>
-
       </Header>  
-    
     </>
   )
 }

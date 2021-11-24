@@ -7,6 +7,7 @@ import pred from '../../styles/img/predio.png'
 import pfx from '../../styles/img/prefix.png'
 import eqp from '../../styles/img/equip.png'
 import view from '../../styles/img/view.png'
+import list from '../../styles/img/list.png'
 import { Link } from 'react-router-dom'
 import './style.css'
 
@@ -113,6 +114,16 @@ export default function Menu(){
         <Link to="/veqp">
           <Button href="#">
             <Icon src={view}/>
+          </Button>
+        </Link>
+      </OptionBox>  
+
+      {/* Opção 10 */}
+      <OptionBox className="op11">
+        <OptionTitle>Inventário</OptionTitle>
+        <Link to="/invent">
+          <Button href="#">
+            <Icon src={list}/>
           </Button>
         </Link>
       </OptionBox>  

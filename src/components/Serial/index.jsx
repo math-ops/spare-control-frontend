@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import './style.css'
 const baseURL = 'http://localhost:3333/'
 
-export default function Item(){
+export default function Item() {
   const [data, setTableData] = useState([]);
   // eslint-disable-next-line
   const [id_equipamento, setIdEquipamento] = useState(0);
@@ -25,6 +25,7 @@ export default function Item(){
   // eslint-disable-next-line
   const [cd_prefixo, setPrefixo] = useState('');
   const [quantidade, setQuantidade] = useState(0);
+  const [isSucess, setIsSucess] = useState(true);
   // eslint-disable-next-line
   const [nm_local, setLocal] = useState('');
   // eslint-disable-next-line
@@ -40,7 +41,7 @@ export default function Item(){
 
 
   const handleChange = e => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setFabricante(prevState => ({
       ...prevState,
       [name]: value
@@ -61,39 +62,54 @@ export default function Item(){
 
   }
 
-  async function handleClick() {
+  async function handleSubmit(e) {
+    e.preventDefault();
 
     console.log('clicou aqui');
 
 
-    for (let index = 0; index < quantidade; index++) {
-      
-      axios.post(`${baseURL}serial`, {
+
+    try {
+      const res = await axios.post(`${baseURL}serial`, {
         id_equipamento: id_equipamento
-      }).then((response) => {
-
-        const serial = `${cd_prefixo}${response.data[0].id}`;
-        const label = zpl(serial);
-        console.log('log',label);
-
-        axios.post(`${baseURL}printer`, {
-          zpl: label,
-          host: "10.113.137.218",
-          port: 9100
-        }).then((response) => console.log(response.data));
       });
+
+      console.log(quantidade);
+
+      for (let index = 0; index < quantidade; index++) {
+        if (res.data) {
+          const serial = `${cd_prefixo}${res.data[0].id}`;
+          const label = zpl(serial);
+          console.log('log', label);
+
+          axios.post(`${baseURL}printer`, {
+            zpl: label,
+            host: "10.113.137.218",
+            port: 9100
+          }).then((response) => console.log(response.data));
+
+          setIsSucess(true);
+        } else {
+          setIsSucess(false);
+        }
+      }
+
+    } catch {
+      setIsSucess(false);
+      console.log('error catch');
+    } finally {
+      handleClick();
     }
-    //para da reload na pagina ao inserir
-    window.location.reload();
   };
 
+
   const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props}/>;
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   })
 
   const [open, setOpen] = React.useState(false);
-  
-  const handleOpen = () => {
+
+  const handleClick = () => {
     setOpen(true)
   }
 
@@ -103,52 +119,56 @@ export default function Item(){
     }
     setOpen(false);
   }
-  
 
-  return(
+
+  return (
     <>
-    <Topbar />
+      <Topbar />
       <Title>Cadastrar Serial</Title>
       <Items>
-      <Autocomplete className="item-id" 
-            id="Item"
-            options={data}
-            getOptionLabel={(option) => option.id + " - "+ option.nm_fabricante + " - " + option.nm_modelo}
-            onChange={(event, newValue) => {
-              setFabricante(newValue?.nm_fabricante);
-              setModelo(newValue?.nm_modelo);
-              // setEquip(newValue?.cd_equipamento);
-              // setPrefixo(newValue?.cd_prefixo);
-              setIdfabricante(newValue?.id_fabricante);
-              setIdmodelo(newValue?.id_modelo);
-            }}
-            onSelect={() => {
-            }
-            }
-            style={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Equipamento..." variant="standard"
-            />}
-          />
-        {/* <Label className="item-id">ID</Label>
-        <Input  className="item-id-input" onBlur={(e) => setEquipamento(e.target.value)} type="text" name="id" id="id" placeholder="ID" onChange={handleChange} required /> */}
-
+        <Autocomplete className="item-id"
+          id="Item"
+          options={data}
+          getOptionLabel={(option) => option.id + " - " + option.nm_fabricante + " - " + option.nm_modelo}
+          onChange={(event, newValue) => {
+            setFabricante(newValue?.nm_fabricante);
+            setModelo(newValue?.nm_modelo);
+            setIdfabricante(newValue?.id_fabricante);
+            setIdmodelo(newValue?.id_modelo);
+          }}
+          onSelect={() => {
+          }
+          }
+          style={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Equipamento..." variant="standard"
+          />}
+        />
+        
         <Label className="item-manf">FABRICANTE</Label>
-        <Input  className="item-manf-input" type="text" name="nm_fabricante" value={nm_fabricante} disabled onChange={handleChange}/>
+        <Input className="item-manf-input" type="text" name="nm_fabricante" value={nm_fabricante} disabled onChange={handleChange} />
 
         <Label className="item-mod">MODELO</Label>
-        <Input className="item-mod-input"  type="text" name="nm_modelo" value={nm_modelo} disabled onChange={handleChange}/>
+        <Input className="item-mod-input" type="text" name="nm_modelo" value={nm_modelo} disabled onChange={handleChange} />
 
         <Label className="item-qtd">QUANTIDADE</Label>
-        <Input className="item-qtd-input" type="number" onChange={(e) => setQuantidade(Number(e.target.value))} name="id_quantidade" id="id_quantidade" placeholder="Quantidade" />
+        <Input className="item-qtd-input" type="number" onChange={(e) => setQuantidade(Number(e.target.value))} name="id_quantidade" id="id_quantidade" min="1" max="99999" placeholder="Quantidade" />
 
         <Button >
-          <Strong onClick={(event) => handleClick(event.preventDefault()) && handleOpen()}>Adicionar</Strong>
+          <Strong onClick={handleSubmit}>Adicionar</Strong>
         </Button>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-         Cadastrado com Sucesso!
-        </Alert>
-      </Snackbar>
+        {isSucess ?
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Cadastrado com Sucesso!
+            </Alert>
+          </Snackbar>
+          :
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              Não Possivel Cadastrar!
+            </Alert>
+          </Snackbar>
+        }
       </Items>
       <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
