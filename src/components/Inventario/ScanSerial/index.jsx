@@ -11,8 +11,32 @@ export default function ScanSerial(){
 
   function handleSubmit(e) {
     e.preventDefault()
-    
+    try {
+      const res = 'aaa';
+      if (!!res === '1234'){
+        setIsSucess(true)
+        openSucess();
+      } else {
+        setIsSucess(false);
+        openAlert();
+      }
+    } catch {
+      setIsSucess(false);
+      console.log('error catch')
+    } 
   }
+
+  const openSucess = ()  =>{
+    console.log('chegou no sucesso');
+  }
+
+  const openAlert = ()  =>{
+    console.log('chegou no alert');
+  }
+
+  // const openError = ()  =>{
+  //   console.log('chegou no erro');
+  // }
 
   const handleChange = e => {
     const { serial, value } = e.target;
