@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Topbar from '../Common/Header'
-import { Title } from '../Menu/style'
-import styled from 'styled-components'
-
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Title } from '../Menu/style'
+import Topbar from '../Common/Header'
+import axios from 'axios'
+import styled from 'styled-components'
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,8 +14,6 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import moment from 'moment'
 import 'moment/locale/pt-br'
-
-import axios from 'axios'
 
 const baseURL = 'http://localhost:3333/equipamento'
 
@@ -28,7 +26,6 @@ export const Footer = styled.h2`
   left: 10%;
 `;
 
-//Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: '#001b94',
@@ -48,8 +45,7 @@ const columns = [
   { id: 'cd_prefixo', label: 'Prefixo', minWidth: 170 },
   { id: 'nm_fabricante', label: 'Fabricante', minWidth: 170 },
   { id: 'nm_modelo', label: 'Modelo', minWidth: 170 },
-  { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
-  
+  { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },  
 ];
 
 const useStyles = makeStyles({
@@ -78,7 +74,6 @@ export function StickyHeadTable() {
     })
   }, []);
 
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -89,7 +84,6 @@ export function StickyHeadTable() {
   };
 
   moment.locale();
-
   moment(data.dt_cadastro).format('L - h:mm A');
 
   return (
@@ -138,15 +132,13 @@ export function StickyHeadTable() {
   );
 }
 
-
-
 export default function ViewItem(){
   return(
     <>
       <Topbar />
-      <Title>Equipamentos Cadastrados</Title>
-      <StickyHeadTable />
-      <Footer>Flex&copy; - All Rights Reserved</Footer>
+        <Title>Equipamentos Cadastrados</Title>
+         <StickyHeadTable />
+        <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }

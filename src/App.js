@@ -40,12 +40,11 @@ function App() {
             {/* ROTA DO INVENTÁRIO */}
             <Route path='/invent' exact component={Inventory} />
             <Route path='/go' exact component={ScanSerial} />
-            
         </Switch>    
       </BrowserRouter>
     <GlobalStyle />
   </>
-    )
+  )
 }
 
 export default App;

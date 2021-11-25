@@ -1,11 +1,8 @@
-import Topbar from '../Common/Header'
-import { Title, Box, Label, Input, Footer, Button } from './style'
-import './style.css'
-import axios from 'axios'
-
 import React, { useState, useEffect } from 'react'
-
+import { Title, Box, Label, Input, Footer, Button } from './style'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Topbar from '../Common/Header'
+import axios from 'axios'
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,6 +13,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
+import './style.css'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 
@@ -39,7 +37,6 @@ const columns = [
   { id: 'nm_local', label: 'Local', minWidth: 170 },
   { id: 'nm_predio', label: 'Nome Predio', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
-
 ];
 
 const useStyles = makeStyles({
@@ -134,7 +131,6 @@ export default function ViewLocal() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     try {
       const res = await axios.post(baseURL, local);
       if (!!res.data) {
@@ -178,35 +174,32 @@ export default function ViewLocal() {
 
   return (
     <>
-
       <Topbar />
-      <Title>Cadastrar Locais</Title>
-      <Box className="local-box">
-        <Label className="local-cod-label" >Código Local</Label>
-        <Input className="local-cod-input" name="cd_local" placeholder="Código Local" onChange={handleChange} />
-        <Label className="local-name-label" >Nome Local</Label>
-        <Input className="local-name-input" name="nm_local" placeholder="Nome Local" onChange={handleChange} />
-        <Label className="local-predio-label">ID Prédio</Label>
-        <Input className="local-predio-input" name="id_predio" placeholder="ID Prédio" onChange={handleChange} />
-        <Button className="local-cad-button" onClick={handleSubmit}>Adicionar</Button>
-        {isSucess ?
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-              Cadastrado com Sucesso!
-            </Alert>
-          </Snackbar>
-          :
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-              Não Foi Possivel Fazer o Cadastro!
-            </Alert>
-          </Snackbar>
-        }
-      </Box>
-
+        <Title>Cadastrar Locais</Title>
+          <Box className="local-box">
+            <Label className="local-cod-label" >Código Local</Label>
+            <Input className="local-cod-input" name="cd_local" placeholder="Código Local" onChange={handleChange} />
+              <Label className="local-name-label" >Nome Local</Label>
+              <Input className="local-name-input" name="nm_local" placeholder="Nome Local" onChange={handleChange} />
+                <Label className="local-predio-label">ID Prédio</Label>
+                <Input className="local-predio-input" name="id_predio" placeholder="ID Prédio" onChange={handleChange} />
+                  <Button className="local-cad-button" onClick={handleSubmit}>Adicionar</Button>
+                    {isSucess ?
+                      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                          Cadastrado com Sucesso!
+                        </Alert>
+                      </Snackbar>
+                      :
+                      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                          Não Foi Possivel Fazer o Cadastro!
+                        </Alert>
+                      </Snackbar>
+                    }
+          </Box>
       <StickyHeadTable />
-      <Footer>Flex&copy; - All Rights Reserved</Footer>
+        <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }
-

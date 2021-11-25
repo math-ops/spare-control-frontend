@@ -2,40 +2,37 @@
   margin-left: 20px;
 }
 
-.local-cod-label{
+.local-cod-label {
   margin-top: 20px;
   margin-left: 20px;
 }
 
-.local-cod-input{
-margin-top: 40px;
+.local-cod-input {
+  margin-top: 40px;
 }
 
-.local-name-label{
+.local-name-label {
   margin-top: 90px;
-
 }
 
-.local-name-input{
-margin-top: 110px;
+.local-name-input {
+  margin-top: 110px;
 }
 
-.local-predio-label{
+.local-predio-label {
   margin-top: 165px;
-
 }
 
-.local-predio-input{
-margin-top: 185px;
+.local-predio-input {
+  margin-top: 185px;
 }
 
-.local-cad-button{
+.local-cad-button {
   margin-top: 240px;
   margin-left: 85px;
   transition: transform;
 }
 
-.local-cad-button:hover{
+.local-cad-button:hover {
   transform: translateY(10px);
 }
-

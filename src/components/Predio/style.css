@@ -1,31 +1,30 @@
-.area-cad-box{
+.area-cad-box {
   margin-top: 10px;
   margin-left: 20px;
 }
 
-.predio-cod-label{
+.predio-cod-label {
   margin-top: 20px;
 }
 
-.predio-cod-input{
+.predio-cod-input {
   margin-top: 40px;
 }
 
-.predio-name-label{
+.predio-name-label {
   margin-top: 100px;
 }
 
-.predio-name-input{
+.predio-name-input {
   margin-top: 130px;
 }
 
-
-.area-cad-button{
+.area-cad-button {
   margin-top: 195px;
   margin-left: 85px;
   transition: transform;
 }
 
-.area-cad-button:hover{
+.area-cad-button:hover {
   transform: scale(1.1);
 }

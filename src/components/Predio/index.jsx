@@ -1,10 +1,7 @@
-import Topbar from '../Common/Header'
-import { Title, Box, Label, Input, Button, Footer } from './style'
-import './style.css'
-
 import React, { useEffect, useState } from 'react';
-
+import { Title, Box, Label, Input, Button, Footer } from './style'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Topbar from '../Common/Header'
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,12 +13,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
 import moment from 'moment'
-import 'moment/locale/pt-br'
 import axios from 'axios';
+import './style.css'
+import 'moment/locale/pt-br'
 
 const baseURL = 'http://localhost:3333/predio'
 
-//Estilização das Células
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: '#001b94',
@@ -40,9 +37,7 @@ const columns = [
   { id: 'cd_predio', label: 'Cod. Prédio', minWidth: 170 },
   { id: 'nm_predio', label: 'Nome do Prédio', minWidth: 170 },
   { id: 'dt_cadastro', label: 'Data Cadastro', minWidth: 170 },
-
 ];
-
 
 const useStyles = makeStyles({
   root: {
@@ -124,7 +119,6 @@ export function StickyHeadTable() {
 }
 
 export default function Area() {
-
   const [isSucess, setIsSucess] = useState(true);
   const [predio, setPredio] = useState({
     id: '',
@@ -179,30 +173,28 @@ export default function Area() {
   return (
     <>
       <Topbar />
-      <Title>Cadastro de Prédios</Title>
-      <Box className="area-cad-box">
-        <Label className="predio-cod-label">Código Prédio</Label>
-        <Input className="predio-cod-input" placeholder="Cod. Prédio" name="cd_predio" onChange={handleChange} />
-
-        <Label className="predio-name-label">Nome Prédio</Label>
-        <Input className="predio-name-input" placeholder="Nome Prédio" name="nm_predio" onChange={handleChange} />
-        <Button className="area-cad-button" onClick={handleSubmit}>Adicionar</Button>
-        {isSucess ?
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-              Cadastrado com Sucesso!
-            </Alert>
-          </Snackbar>
-          :
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-              Não Foi Possivel Fazer o Cadastro!
-            </Alert>
-          </Snackbar>
-        }
-      </Box>
-
-      <StickyHeadTable />
+        <Title>Cadastro de Prédios</Title>
+          <Box className="area-cad-box">
+            <Label className="predio-cod-label">Código Prédio</Label>
+            <Input className="predio-cod-input" placeholder="Cod. Prédio" name="cd_predio" onChange={handleChange} />
+              <Label className="predio-name-label">Nome Prédio</Label>
+              <Input className="predio-name-input" placeholder="Nome Prédio" name="nm_predio" onChange={handleChange} />
+                <Button className="area-cad-button" onClick={handleSubmit}>Adicionar</Button>
+                  {isSucess ?
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                      <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        Cadastrado com Sucesso!
+                      </Alert>
+                    </Snackbar>
+                    :
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                      <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        Não Foi Possivel Fazer o Cadastro!
+                      </Alert>
+                    </Snackbar>
+                  }
+           </Box>
+        <StickyHeadTable />
       <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )

@@ -1,19 +1,16 @@
 
-import './style.css'
+import * as React from 'react'
+import { useState, useEffect } from 'react';
 import { Title, Items, Strong, Button, Footer } from './style'
 import TextField from '@material-ui/core/TextField';
 import Topbar from '../Common/Header'
 import axios from '../../services/api'
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import * as React from 'react'
 import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
-import { useState, useEffect } from 'react';
-// const baseURL = 'http://localhost:3333/equipamento'
-
+import './style.css'
 
 export default function Item() {
-  // const [data, setTableData] = useState([]);
   const [fabricante, setFabricante] = useState([]);
   const [id_fabricante, setIdfabricante] = useState(0);
   const [modelo, setModelo] = useState([]);
@@ -27,9 +24,7 @@ export default function Item() {
   const [isSucess, setIsSucess] = useState(true);
 
   useEffect(() => {
-
     const ress = async () => {
-
       const [
         req_fabricante,
         req_modelo,
@@ -38,22 +33,18 @@ export default function Item() {
         axios.get("fabricante"),
         axios.get("modelo"),
         axios.get("prefixo"),
-
       ]);
-      setFabricante(req_fabricante.data);
-      setModelo(req_modelo.data);
-      setPrefixo(req_prefixo.data);
-      console.log(req_fabricante.data);
-      console.log(req_modelo.data);
-      console.log(req_prefixo.data);
+        setFabricante(req_fabricante.data);
+        setModelo(req_modelo.data);
+        setPrefixo(req_prefixo.data);
+        console.log(req_fabricante.data);
+        console.log(req_modelo.data);
+        console.log(req_prefixo.data);
     }
     ress();
   }, []);
 
   async function handleSubmit() {
-
-    // console.log();
-
     try {
       const res = await axios.post('equipamento', {
         id_fabricante: id_fabricante,
@@ -69,7 +60,6 @@ export default function Item() {
         })
       }else{
         setIsSucess(true);
-
         setMsgSucess({
           type: 'success', 
           message: 'Adicionado com sucesso'
@@ -77,17 +67,12 @@ export default function Item() {
       }
     } catch{
       setIsSucess(false);
-
       console.log('error catch');
       setMsgFail({
         type: 'error',
         message: "Não inserido"
       })
     }
-    
-    //para da reload na pagina ao inserir
-    //  setTimeout(() => {  window.location.reload(); }, 6000); 
-
   }
 
   const Alert = React.forwardRef(function Alert(props, ref) {
@@ -110,71 +95,68 @@ export default function Item() {
   return (
     <>
       <Topbar />
-      <Title>Cadastrar Equipamento</Title>
+        <Title>Cadastrar Equipamento</Title>
+          <Items onSubmit={(e) => handleSubmit(e.preventDefault())}>
+            <Autocomplete className="item-id"
+              id="Item"
+              options={fabricante}
+              getOptionLabel={(option) => option.id + " - " + option.nm_fabricante}
+              onChange={(event, newValue) => {
+                setIdfabricante(newValue?.id);
+              }}
+              onSelect={() => {
+              }
+              }
+              style={{ width: 275 }}
+              renderInput={(params) => <TextField {...params} label="FABRICANTE..." variant="standard"/>}
+            />
 
-      <Items onSubmit={(e) => handleSubmit(e.preventDefault())}>
-        <Autocomplete className="item-id"
-          id="Item"
-          options={fabricante}
-          getOptionLabel={(option) => option.id + " - " + option.nm_fabricante}
-          onChange={(event, newValue) => {
-            setIdfabricante(newValue?.id);
-          }}
-          onSelect={() => {
-          }
-          }
-          style={{ width: 275 }}
-          renderInput={(params) => <TextField {...params} label="FABRICANTE..." variant="standard"/>}
-        />
+            <Autocomplete className="item-id"
+              id="Item"
+              options={modelo}
+              getOptionLabel={(option) => option.id + " - " + option.nm_modelo}
+              onChange={(event, newValue) => {
+                setIdmodelo(newValue?.id);
+              }}
+              onSelect={() => {
+              }
+              }
+              style={{ width: 275 }}
+              renderInput={(params) => <TextField {...params} label="MODELO..." variant="standard"  />}
+            />
 
-        <Autocomplete className="item-id"
-          id="Item"
-          options={modelo}
-          getOptionLabel={(option) => option.id + " - " + option.nm_modelo}
-          onChange={(event, newValue) => {
-            setIdmodelo(newValue?.id);
-          }}
-          onSelect={() => {
-          }
-          }
-          style={{ width: 275 }}
-          renderInput={(params) => <TextField {...params} label="MODELO..." variant="standard"  />}
-        />
+            <Autocomplete className="item-id"
+              id="Item"
+              options={prefixo}
+              getOptionLabel={(option) => option.id + " - " + option.cd_prefixo}
+              onChange={(event, newValue) => {
+                setCdprefixo(newValue?.cd_prefixo);
+              }}
+              onSelect={() => {
+              }
+              }
+              style={{ width: 275 }}
+              renderInput={(params) => <TextField {...params} label="PREFIXO..." variant="standard" />}
+            />
 
-        <Autocomplete className="item-id"
-          id="Item"
-          options={prefixo}
-          getOptionLabel={(option) => option.id + " - " + option.cd_prefixo}
-          onChange={(event, newValue) => {
-            setCdprefixo(newValue?.cd_prefixo);
-          }}
-          onSelect={() => {
-          }
-          }
-          style={{ width: 275 }}
-          renderInput={(params) => <TextField {...params} label="PREFIXO..." variant="standard" />}
-        />
-
-        <Button>
-          <Strong className="fab-button" onClick={handleOpen} >Adicionar</Strong>
-        </Button>
-        { isSucess ?
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-            Cadastrado com Sucesso!
-          </Alert>
-        </Snackbar>
-        :
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-            Não Possivel Cadastrar!
-          </Alert>
-        </Snackbar>
-        }
-
-      </Items>
+              <Button>
+                <Strong className="fab-button" onClick={handleOpen} >Adicionar</Strong>
+              </Button>
+                { isSucess ?
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    Cadastrado com Sucesso!
+                  </Alert>
+                </Snackbar>
+                :
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                  <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    Não Possivel Cadastrar!
+                  </Alert>
+                </Snackbar>
+                }
+          </Items>
       <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
 }
-

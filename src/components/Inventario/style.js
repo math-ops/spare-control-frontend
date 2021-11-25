@@ -22,7 +22,7 @@ export const Subtitle = styled.h2`
   margin-bottom: 10px;
 `;
 
-export const Items = styled.div`
+export const Items = styled.form`
   position: absolute;
   width: 335px;
   height: 250px;
@@ -50,7 +50,7 @@ export const Input = styled.input`
   border-radius: 5px;
 `;
 
-export const Button = styled.a`
+export const Button = styled.button`
   position: absolute;
   width: 130px;
   height: 50px;
@@ -67,13 +67,21 @@ export const Button = styled.a`
   }
 `;
 
+export const HiddenButton = styled.button`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border: none;
+  cursor: pointer;
+`;
+
 export const Strong = styled.strong`
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
   position: absolute;
-  margin-top: 15px;
-  margin-left: 30px;
+  margin-top: -8px;
+  margin-left: -30px;
   color: #eee;
 
 `;
@@ -94,3 +102,7 @@ export const Footer = styled.h2`
   top: 95%;
   left: 10%;
 `;
+
+export const GreenFlag = styled.div``;
+
+export const RedFlag = styled.div``;
