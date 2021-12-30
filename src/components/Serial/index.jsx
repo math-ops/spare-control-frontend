@@ -67,14 +67,8 @@ export default function Item() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    console.log('clicou aqui');
-    
     try {
-      const res = await axios.post(`${baseURL}serial`, {
-        id_equipamento: id_equipamento
-      });
-
-      console.log(quantidade);
+      const res = await axios.post(`${baseURL}serial`, {id_equipamento: id_equipamento});
 
       for (let index = 0; index < quantidade; index++) {
         if (res.data) {
@@ -99,7 +93,6 @@ export default function Item() {
 
     } catch {
       setIsSucess(false);
-      console.log('error catch');
     } finally {
       handleClick();
     }
@@ -125,48 +118,53 @@ export default function Item() {
   return (
     <>
       <Topbar />
-        <Title>Cadastrar Serial</Title>
-          <Items>
-            <Autocomplete className="item-id"
-              id="Item"
-              options={data}
-              getOptionLabel={(option) => option.id + " - " + option.nm_fabricante + " - " + option.nm_modelo}
-              onChange={(event, newValue) => {
-                setFabricante(newValue?.nm_fabricante);
-                setModelo(newValue?.nm_modelo);
-                setIdfabricante(newValue?.id_fabricante);
-                setIdmodelo(newValue?.id_modelo);
-              }}
-              onSelect={() => {
-              }
-              }
-              style={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Equipamento..." variant="standard"
-              />}
-            />
-          <Label className="item-manf">FABRICANTE</Label>
-          <Input className="item-manf-input" type="text" name="nm_fabricante" value={nm_fabricante} disabled onChange={handleChange} />
-            <Label className="item-mod">MODELO</Label>
-            <Input className="item-mod-input" type="text" name="nm_modelo" value={nm_modelo} disabled onChange={handleChange} />
-              <Label className="item-qtd">QUANTIDADE</Label>
-              <Input className="item-qtd-input" type="number" onChange={(e) => setQuantidade(Number(e.target.value))} name="id_quantidade" id="id_quantidade" min="1" max="99999" placeholder="Quantidade" />
-            <Button >
-              <Strong onClick={handleSubmit}>Adicionar</Strong>
-            </Button>
-              {isSucess ?
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                    Cadastrado com Sucesso!
-                  </Alert>
-                </Snackbar>
-                :
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                  <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                    Não Possivel Cadastrar!
-                  </Alert>
-                </Snackbar>
-              }
-          </Items>
+      <Title>Cadastrar Serial</Title>
+      <Items>
+        <Autocomplete className="item-id"
+          id="Item"
+          options={data}
+          getOptionLabel={(option) => option.id + " - " + option.nm_fabricante + " - " + option.nm_modelo}
+          onChange={(event, newValue) => {
+            setIdEquipamento(newValue?.id);
+            setFabricante(newValue?.nm_fabricante);
+            setModelo(newValue?.nm_modelo);
+            setIdfabricante(newValue?.id_fabricante);
+            setIdmodelo(newValue?.id_modelo);
+          }}
+          onSelect={() => {
+          }
+          }
+          style={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Equipamento..." variant="standard"
+          />}
+        />
+        
+        <Label className="item-manf">FABRICANTE</Label>
+        <Input className="item-manf-input" type="text" name="nm_fabricante" value={nm_fabricante} disabled onChange={handleChange} />
+
+        <Label className="item-mod">MODELO</Label>
+        <Input className="item-mod-input" type="text" name="nm_modelo" value={nm_modelo} disabled onChange={handleChange} />
+
+        <Label className="item-qtd">QUANTIDADE</Label>
+        <Input className="item-qtd-input" type="number" onChange={(e) => setQuantidade(Number(e.target.value))} name="id_quantidade" id="id_quantidade" min="1" max="99999" placeholder="Quantidade" />
+
+        <Button >
+          <Strong onClick={handleSubmit}>Adicionar</Strong>
+        </Button>
+        {isSucess ?
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Cadastrado com Sucesso!
+            </Alert>
+          </Snackbar>
+          :
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              Não Possivel Cadastrar!
+            </Alert>
+          </Snackbar>
+        }
+      </Items>
       <Footer>Flex&copy; - All Rights Reserved</Footer>
     </>
   )
